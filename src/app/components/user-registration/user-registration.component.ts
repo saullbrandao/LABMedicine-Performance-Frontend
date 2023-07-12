@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CPF_REGEX, PHONE_REGEX } from 'src/app/utils/constants';
+import { UserRegistrationService } from './user-registration.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -10,7 +11,10 @@ import { CPF_REGEX, PHONE_REGEX } from 'src/app/utils/constants';
 export class UserRegistrationComponent {
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private userRegistrationService: UserRegistrationService
+  ) {
     this.form = this.formBuilder.group({
       fullName: [
         '',
@@ -35,7 +39,18 @@ export class UserRegistrationComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      alert('Usuário cadastrado');
+      this.userRegistrationService.register(this.form.value).subscribe({
+        next(res) {
+          // TODO: maybe add a toast notification instead of this alert
+          alert('Usuário cadastrado');
+        },
+        error(err) {
+          // TODO: handle the error according to HTTP status received(400, 409, 500)
+          alert('Erro ao cadastrar usuário');
+        },
+      });
+
+      this.form.reset();
     } else {
       Object.keys(this.form.controls).forEach((field) => {
         const control = this.form.get(field);
