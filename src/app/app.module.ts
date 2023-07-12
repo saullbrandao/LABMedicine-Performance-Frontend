@@ -10,7 +10,7 @@ import { ComponentsModule } from './components/components.module';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
-import { AddTokenInterceptor } from "./interceptors/add-token.interceptor";
+import { AddTokenInterceptor } from './interceptors/add-token.interceptor';
 
 @NgModule({
   declarations: [AppComponent, GenderValidatorDirective],
@@ -27,7 +27,7 @@ import { AddTokenInterceptor } from "./interceptors/add-token.interceptor";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AddTokenInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
