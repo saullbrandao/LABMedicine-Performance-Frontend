@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CPF_REGEX, PHONE_REGEX } from 'src/app/utils/constants';
 import { UserRegistrationService } from './user-registration.service';
+import { NotificationService } from '../../services/notification/notification.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -13,7 +14,8 @@ export class UserRegistrationComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userRegistrationService: UserRegistrationService
+    private userRegistrationService: UserRegistrationService,
+    private notificationService: NotificationService
   ) {
     this.form = this.formBuilder.group({
       fullName: [
@@ -39,16 +41,19 @@ export class UserRegistrationComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      this.userRegistrationService.register(this.form.value).subscribe({
-        next(res) {
-          // TODO: maybe add a toast notification instead of this alert
-          alert('Usuário cadastrado');
-        },
-        error(err) {
-          // TODO: handle the error according to HTTP status received(400, 409, 500)
-          alert('Erro ao cadastrar usuário');
-        },
-      });
+      this.userRegistrationService
+        .register(this.form.value)
+        .subscribe((res) => {
+          this.notificationService.success(res.message);
+
+          switch (res.status) {
+            case 201:
+              this.notificationService.success(res.message);
+              break;
+            default:
+              this.notificationService.error(res.message);
+          }
+        });
 
       this.form.reset();
     } else {
