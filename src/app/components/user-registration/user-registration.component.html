@@ -18,11 +18,13 @@
     <div>
       <label class="form-label fw-bold" for="cpf">CPF*</label>
       <input
-        placeholder="000.000.000-00"
         class="form-control"
         type="text"
         id="cpf"
         formControlName="cpf"
+        mask="000.000.000-00"
+        [dropSpecialCharacters]="false"
+        placeholder="000.000.000-00"
         [class.is-invalid]="isInvalid('cpf')"
       />
       <span class="invalid-feedback">Insira um cpf válido</span>
@@ -49,6 +51,8 @@
           type="text"
           id="phone"
           formControlName="phone"
+          mask="(00) 0 0000-0000"
+          [dropSpecialCharacters]="false"
           placeholder="(00) 0 0000-0000"
           [class.is-invalid]="isInvalid('phone')"
         />
@@ -69,7 +73,7 @@
         <label class="form-label fw-bold" for="password">Senha*</label>
         <input
           class="form-control"
-          type="text"
+          type="password"
           id="password"
           formControlName="password"
           [class.is-invalid]="isInvalid('password')"

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CPF_REGEX, PHONE_REGEX } from 'src/app/utils/constants';
 
 @Component({
   selector: 'app-user-registration',
@@ -11,13 +12,20 @@ export class UserRegistrationComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      fullName: [''],
-      gender: [''],
-      cpf: [''],
-      phone: [''],
-      email: [''],
-      password: [''],
-      type: [''],
+      fullName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(64),
+        ],
+      ],
+      gender: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.pattern(CPF_REGEX)]],
+      phone: ['', [Validators.required, Validators.pattern(PHONE_REGEX)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      type: ['', [Validators.required]],
     });
   }
 
