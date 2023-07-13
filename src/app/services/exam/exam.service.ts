@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Exam } from "../../models/exam";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { BASE_URL } from "../../utils/constants";
+import { API_URL } from "../../utils/constants";
 
 export type ExamRegistrationResponse = {
   status: number,
@@ -20,7 +20,7 @@ export class ExamService {
   }
 
   public save(exam: Exam) {
-    this.http.post<Exam>(`${BASE_URL}/exams`, exam)
+    this.http.post<Exam>(`${API_URL}/exams`, exam)
       .subscribe(data => {
         // TODO: call real api and use its response (currently using json server)
         const response = {
