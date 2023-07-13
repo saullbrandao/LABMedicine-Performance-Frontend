@@ -1,0 +1,131 @@
+<section class="p-4">
+  <h2>Preencha os campos para cadastrar novo exame</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3">
+    <div class="form-check form-switch form-check-reverse">
+      <label class="form-check-label fw-bold" for="status">Exame ativo</label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="status"
+        formControlName="status"
+      >
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="patient">Paciente*</label>
+      <select
+        class="form-select"
+        [class.is-invalid]="isInvalid('patientId')"
+        id="patient"
+        formControlName="patientId"
+        (change)="setPatientId($event)"
+      >
+        <option *ngFor="let patient of patientFormFieldOptions" [value]="patient.id">{{ patient.name }}</option>
+      </select>
+      <span class="invalid-feedback">Selecione um paciente</span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="name">Título*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('name')"
+        type="text"
+        id="name"
+        formControlName="name"
+      >
+      <span class="invalid-feedback">
+        Digite um título válido (Mínimo 8 e máximo 64 caracteres)
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="date">Data do Exame*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('date')"
+        type="date"
+        id="date"
+        formControlName="date"
+      >
+      <span class="invalid-feedback">
+        Insira uma data válida
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="time">Hora do Exame*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('time')"
+        type="time"
+        id="time"
+        formControlName="time"
+      >
+      <span class="invalid-feedback">
+        Insira um horário válido
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="type">Tipo*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('type')"
+        type="text"
+        id="type"
+        formControlName="type"
+      >
+      <span class="invalid-feedback">
+        Digite um tipo válido (Mínimo 4 e máximo 32 caracteres)
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="laboratory">Laboratório*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('laboratory')"
+        type="text"
+        id="laboratory"
+        formControlName="laboratory"
+      >
+      <span class="invalid-feedback">
+        Digite um nome válido (Mínimo 4 e máximo 32 caracteres)
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="url">Link do documento</label>
+      <input
+        class="form-control"
+        type="text"
+        id="url"
+        formControlName="url"
+      >
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="result">Resultado*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('result')"
+        type="text"
+        id="result"
+        formControlName="result"
+      >
+      <span class="invalid-feedback">
+        Digite um resultado válido (Mínimo 16 e máximo 1024 caracteres)
+      </span>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3">
+      <div>
+        <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
