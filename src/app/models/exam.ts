@@ -8,4 +8,5 @@ export type Exam = {
   url: string;
   result: string;
   status: boolean;
+  patientId: number;
 }
