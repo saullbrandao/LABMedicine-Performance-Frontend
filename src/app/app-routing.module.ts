@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ExamRegistrationComponent} from "./pages/exam-registration/exam-registration.component";
+import { ExamRegistrationComponent } from "./pages/exam-registration/exam-registration.component";
 
 const routes: Routes = [
   {
     path: 'examregistration',
-    component: ExamRegistrationComponent
+    children: [
+      {
+        path: '',
+        component: ExamRegistrationComponent
+      },
+      {
+        path: ':id',
+        component: ExamRegistrationComponent
+      }
+    ]
   }
 ];
 
