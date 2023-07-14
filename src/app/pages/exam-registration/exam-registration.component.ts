@@ -5,6 +5,8 @@ import { ExamRegistrationResponse, ExamService } from "../../services/exam/exam.
 import { NotificationService } from "../../services/notification/notification.service";
 import { Patient } from "../../models/patient";
 import { Subject, takeUntil } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Exam } from "../../models/exam";
 
 @Component({
   selector: 'app-exam-registration',
@@ -15,28 +17,36 @@ export class ExamRegistrationComponent {
   form: FormGroup;
   patientFormFieldOptions: {id: number, name: string}[] = [];
   private componentDestroyed = new Subject();
+  editMode = false;
+  header = 'Preencha os campos para cadastrar novo exame';
+  confirmMessage = 'Este exame será excluído. Confirma a operação?'
 
   constructor(
     private formBuilder: FormBuilder,
     private examService: ExamService,
     private notificationService: NotificationService,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ){
     patientService.patientsLoaded.pipe(takeUntil(this.componentDestroyed)).subscribe(this.setPatientFormFieldOptions);
     examService.examSaved.pipe(takeUntil(this.componentDestroyed)).subscribe(this.toastResponse);
-    this.form = this.formBuilder.group(this.formDefaultData);
+    examService.examDeleted.pipe(takeUntil(this.componentDestroyed)).subscribe(this.toastResponse);
+    examService.editingExamLoaded.pipe(takeUntil(this.componentDestroyed)).subscribe(this.loadExam);
+    examService.httpError.pipe(takeUntil(this.componentDestroyed)).subscribe(this.toastResponse);
+    this.form = this.formBuilder.group(this.getFormData());
   }
 
-  get formDefaultData() {
+  getFormData(exam: Exam | undefined = undefined) {
     const now = new Date();
 
     return {
-      id: [ 0 ],
-      patientId: [0,
+      id: [ exam?.id || 0 ],
+      patientId: [ exam?.patientId || 0,
         [ Validators.required, Validators.min(1) ]
       ],
       name: [
-        '',
+        exam?.name || '',
         [
           Validators.required,
           Validators.minLength(8),
@@ -44,15 +54,15 @@ export class ExamRegistrationComponent {
         ]
       ],
       date: [
-        now.toISOString().substring(0,10),
+        exam?.date || now.toISOString().substring(0,10),
         [ Validators.required ]
       ],
       time: [
-        now.toLocaleTimeString().substring(0,5),
+        exam?.time || now.toLocaleTimeString().substring(0,5),
         [ Validators.required ]
       ],
       type: [
-        '',
+        exam?.type || '',
         [
           Validators.required,
           Validators.minLength(4),
@@ -60,23 +70,23 @@ export class ExamRegistrationComponent {
         ]
       ],
       laboratory: [
-        '',
+        exam?.laboratory || '',
         [
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(32)
         ]
       ],
-      url: [ '' ],
+       url: [ exam?.url || '' ],
       result: [
-        '',
+        exam?.result || '',
         [
           Validators.required,
           Validators.minLength(16),
           Validators.maxLength(1024)
         ]
       ],
-      status: [ true ]
+      status: [ exam?.status || true ]
     }
   }
 
@@ -93,17 +103,26 @@ export class ExamRegistrationComponent {
   }
 
   toastResponse = (response: ExamRegistrationResponse) => {
-    if(response.status !== 201) {
+    if(![200, 201, 204].includes(response.status)) {
       this.notificationService.error(response.message);
+
+      if(response.status === 404) this.goToRegistration();
+
       return;
     }
 
     this.notificationService.success(response.message);
-    this.formReset();
+
+    if(response.status === 201) this.formReset();
+    if(response.status === 204) this.goToRegistration();
+  }
+
+  goToRegistration(){
+    this.router.navigate(['examregistration']);
   }
 
   formReset(){
-    this.form = this.formBuilder.group(this.formDefaultData);
+    this.form = this.formBuilder.group(this.getFormData());
   }
 
   onSubmit() {
@@ -126,8 +145,23 @@ export class ExamRegistrationComponent {
     }));
   }
 
+  loadExam = (response: ExamRegistrationResponse) => {
+    const exam = response.data as Exam;
+    this.form = this.formBuilder.group(this.getFormData(exam));
+  }
+
+  delete(){
+    this.examService.delete(this.form.get('id')?.value);
+  }
+
   ngOnInit(){
     this.patientService.getAll();
+
+    this.editMode = !!this.activatedRoute.snapshot.params['id'];
+    if(this.editMode){
+      this.header = 'Preencha os campos para editar o exame';
+      this.examService.get(this.activatedRoute.snapshot.params["id"])
+    }
   }
 
   ngOnDestroy(){
