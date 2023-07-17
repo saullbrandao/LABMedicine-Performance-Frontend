@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+    declarations: [
+        ConfirmModalComponent
+    ],
+    exports: [
+        ConfirmModalComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class ComponentsModule {}
