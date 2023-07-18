@@ -5,9 +5,10 @@ import { ComponentsModule } from "../components/components.module";
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { ExerciseRegistrationComponent } from './exercise-registration/exercise-registration.component';
 
 @NgModule({
-  declarations: [UserRegistrationComponent, ExamRegistrationComponent],
+  declarations: [UserRegistrationComponent, ExamRegistrationComponent, ExerciseRegistrationComponent],
   imports: [CommonModule, ReactiveFormsModule, NgxMaskDirective, NgxMaskPipe, ComponentsModule],
   providers: [provideNgxMask()],
 
