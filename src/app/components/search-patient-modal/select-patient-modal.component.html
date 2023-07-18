@@ -1,0 +1,38 @@
+<div #modal class="modal fade" id="selectPatientModal" tabindex="-1" aria-labelledby="selectPatientModalTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="selectPatientModalTitle">Selecionar Paciente</h1>
+        <button #modalCloseBtn type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="search-patient"></label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+            <input
+              #searchPatientInput
+              id="search-patient"
+              type="text"
+              class="form-control"
+              placeholder="Nome do Paciente"
+              aria-label="Search Patient"
+              aria-describedby="basic-addon1"
+            >
+          </div>
+        </div>
+
+        <div class="list-group">
+          <button
+            *ngFor="let patient of patients"
+            type="button"
+            class="list-group-item list-group-item-action"
+            (click)="select(patient)"
+          >
+            {{ patient.fullName }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

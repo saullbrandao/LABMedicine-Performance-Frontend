@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import { PatientService } from "../../services/patient/patient.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ExamRegistrationResponse, ExamService } from "../../services/exam/exam.service";
@@ -14,6 +14,8 @@ import { Exam } from "../../models/exam";
   styleUrls: ['./exam-registration.component.css']
 })
 export class ExamRegistrationComponent {
+  @ViewChild('patientInput') patientInput!: ElementRef;
+
   form: FormGroup;
   patientFormFieldOptions: {id: number, name: string}[] = [];
   private componentDestroyed = new Subject();
@@ -29,7 +31,6 @@ export class ExamRegistrationComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ){
-    patientService.patientsLoaded.pipe(takeUntil(this.componentDestroyed)).subscribe(this.setPatientFormFieldOptions);
     examService.examSaved.pipe(takeUntil(this.componentDestroyed)).subscribe(this.toastResponse);
     examService.examDeleted.pipe(takeUntil(this.componentDestroyed)).subscribe(this.toastResponse);
     examService.editingExamLoaded.pipe(takeUntil(this.componentDestroyed)).subscribe(this.loadExam);
@@ -98,8 +99,9 @@ export class ExamRegistrationComponent {
     return this.form.get('patientId');
   }
 
-  setPatientId(event: any) {
-    this.patientFormField?.setValue(Number(event.target.value));
+  setPatient(patient: Patient) {
+    this.patientFormField?.setValue(patient.id);
+    this.patientInput.nativeElement.value = patient.fullName;
   }
 
   toastResponse = (response: ExamRegistrationResponse) => {
@@ -135,14 +137,9 @@ export class ExamRegistrationComponent {
       return;
     }
 
-    this.examService.save(this.form.value);
-  }
+    console.log(this.form.value);
 
-  setPatientFormFieldOptions = (data: Patient[]) => {
-    this.patientFormFieldOptions = data.map(patientData => ({
-      id: patientData.id,
-      name: patientData.fullName
-    }));
+    // this.examService.save(this.form.value);
   }
 
   loadExam = (response: ExamRegistrationResponse) => {
