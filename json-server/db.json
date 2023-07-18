@@ -285,6 +285,7 @@
     {
       "id": 1,
       "patientId": 5,
+      "patientName": "Linda Alves",
       "name": "Hemograma Controle",
       "date": "2023-07-13",
       "time": "18:51",
@@ -297,6 +298,7 @@
     {
       "id": 2,
       "patientId": 10,
+      "patientName": "Geane da Luz",
       "name": "Eletro de Rotina",
       "date": "2023-05-15",
       "time": "10:00",
@@ -309,6 +311,7 @@
     {
       "id": 3,
       "patientId": 3,
+      "patientName": "Nena Aragão",
       "name": "Exame de sangue",
       "date": "2023-06-10",
       "time": "9:00",
@@ -321,6 +324,7 @@
     {
       "id": 4,
       "patientId": 3,
+      "patientName": "Nena Aragão",
       "name": "Exame de sangue",
       "date": "2023-07-10",
       "time": "8:35",

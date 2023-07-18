@@ -41,6 +41,10 @@ export class ExamRegistrationComponent {
   getFormData(exam: Exam | undefined = undefined) {
     const now = new Date();
 
+    if(exam) {
+      this.patientInput.nativeElement.value = exam.patientName;
+    }
+
     return {
       id: [ exam?.id || 0 ],
       patientId: [ exam?.patientId || 0,
@@ -139,7 +143,7 @@ export class ExamRegistrationComponent {
 
     console.log(this.form.value);
 
-    // this.examService.save(this.form.value);
+    this.examService.save(this.form.value);
   }
 
   loadExam = (response: ExamRegistrationResponse) => {

@@ -9,4 +9,5 @@ export type Exam = {
   result: string;
   status: boolean;
   patientId: number;
+  patientName: string;
 }
