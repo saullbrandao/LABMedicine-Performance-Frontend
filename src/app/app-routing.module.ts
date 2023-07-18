@@ -4,6 +4,7 @@ import { UserRegistrationComponent } from './pages/user-registration/user-regist
 import { ExamRegistrationComponent } from './pages/exam-registration/exam-registration.component';
 import { ExerciseRegistrationComponent } from './pages/exercise-registration/exercise-registration.component';
 import { ExerciseResolver } from './pages/exercise-registration/exercise.resolver';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,16 @@ const routes: Routes = [
         resolve: { exercise: ExerciseResolver },
       },
     ],
+  },
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+    title: '404 | Not found',
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    title: '404 | Not found',
   },
 ];
 
