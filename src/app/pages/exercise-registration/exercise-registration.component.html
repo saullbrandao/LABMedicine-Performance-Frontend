@@ -12,6 +12,7 @@
       />
     </div>
     <button
+      *ngIf="!isEditing"
       class="btn btn-primary px-5 text-light rounded-0 w-100"
       data-bs-toggle="modal"
       data-bs-target="#selectPatientModal"
