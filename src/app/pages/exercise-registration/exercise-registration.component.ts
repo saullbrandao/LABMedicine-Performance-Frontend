@@ -9,12 +9,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExerciseService } from './exercise.service';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ExerciseType } from '../../enums/exercise-type';
-import { DateTimeService } from 'src/app/services/date-time.service';
 import { Exercise } from 'src/app/models/exercise';
 import { ActivatedRoute } from '@angular/router';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Patient } from 'src/app/models/patient';
+import { DateTimeService } from 'src/app/services/date-time.service';
 
 // TODO: redirect the user to the appropriate page after the operation is done
 @Component({
@@ -52,8 +52,8 @@ export class ExerciseRegistrationComponent implements OnInit, OnDestroy {
           Validators.maxLength(100),
         ],
       ],
-      date: [this.dateTimeService.getCurrentDate(), [Validators.required]],
-      time: [this.dateTimeService.getCurrentTime(), [Validators.required]],
+      date: [dateTimeService.getFormattedDate(), [Validators.required]],
+      time: [dateTimeService.getFormattedTime(), [Validators.required]],
       type: [this.exerciseType.AGILIDADE, [Validators.required]],
       amountPerWeek: [
         1,
@@ -76,9 +76,9 @@ export class ExerciseRegistrationComponent implements OnInit, OnDestroy {
         .subscribe((patient) => {
           this.setPatient(patient);
         });
-
       this.form.patchValue({
         ...exercise,
+        date: this.dateTimeService.getFormattedDate(exercise.date),
       });
     }
   }
@@ -102,6 +102,10 @@ export class ExerciseRegistrationComponent implements OnInit, OnDestroy {
     }
 
     const exercise = this.form.value;
+    exercise.date = this.dateTimeService.convertDateStringToISOFormat(
+      exercise.date
+    );
+
     const successMsg = exercise.id
       ? 'Exercício atualizado com sucesso!'
       : 'Exercício cadastrado com sucesso!';

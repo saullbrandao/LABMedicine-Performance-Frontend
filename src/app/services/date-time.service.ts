@@ -1,23 +1,23 @@
+import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DateTimeService {
-  constructor() {}
+  constructor(private datePipe: DatePipe) {}
 
-  getCurrentDate() {
-    return `${new Date().getDate().toString().padStart(2, '0')}/${(
-      new Date().getMonth() + 1
-    )
-      .toString()
-      .padStart(2, '0')}/${new Date().getFullYear()}`;
+  getFormattedDate(date?: string | Date) {
+    date = date || new Date();
+    return this.datePipe.transform(date, 'dd/MM/yyyy');
   }
 
-  getCurrentTime() {
-    return `${new Date().getHours().toString().padStart(2, '0')}:${new Date()
-      .getMinutes()
-      .toString()
-      .padStart(2, '0')}`;
+  getFormattedTime(time?: string | Date) {
+    time = time || new Date();
+    return this.datePipe.transform(time, 'HH:mm');
+  }
+
+  convertDateStringToISOFormat(date: String) {
+    return date.split('/').reverse().join('-');
   }
 }
