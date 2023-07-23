@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/models/patient';
+import { User } from 'src/app/models/user';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { StatsService } from 'src/app/services/stats.service';
 
@@ -36,20 +37,22 @@ export class HomeComponent implements OnInit {
     },
   };
   patients: Patient[] = [];
+  users: User[] = [];
   filteredPatients = this.patients;
+  filteredUsers = this.users;
 
   constructor(
     private patientService: PatientService,
     private statsService: StatsService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.patientService.getAll();
     this.patientService.patientsLoaded.subscribe((data) => {
       this.patients = data;
       this.filteredPatients = data;
     });
-  }
 
-  ngOnInit(): void {
     this.statsService.getStats().subscribe((data) => {
       this.systemStats.pacientes.quantity = data.patients;
       this.systemStats.consultas.quantity = data.appointments;
@@ -70,6 +73,20 @@ export class HomeComponent implements OnInit {
         patient.email.includes(term) ||
         patient.phone.includes(term) ||
         patient.cpf.includes(term)
+      );
+    });
+  }
+
+  filterUsers(searchTerm: string) {
+    this.filteredUsers = this.users.filter((user) => {
+      const name = user.fullName.toLowerCase();
+      const term = searchTerm.toLowerCase();
+
+      return (
+        name.includes(term) ||
+        user.email.includes(term) ||
+        user.phone.includes(term) ||
+        user.cpf.includes(term)
       );
     });
   }

@@ -73,4 +73,44 @@
       </div>
     </div>
   </section>
+
+  <!-- TODO: display only if the user is admin -->
+  <section>
+    <h2 class="text-center text-md-start">Informações Rápidas de Usuários</h2>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1"
+        ><i class="bi bi-search"></i
+      ></span>
+      <input
+        #searchUserInput
+        id="search-patient"
+        type="text"
+        class="form-control"
+        placeholder="Busca por nome, cpf, telefone ou email"
+        aria-label="Search Patient"
+        aria-describedby="basic-addon1"
+        (keyup)="filterUsers(searchUserInput.value)"
+      />
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="filterUsers(searchUserInput.value)"
+      >
+        Buscar
+      </button>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 pb-4">
+      <div class="col" *ngFor="let user of filteredUsers">
+        <div
+          class="card d-flex flex-column align-items-center gap-2 p-3 shadow"
+        >
+          <i class="bi bi-person-circle" style="font-size: 5rem"></i>
+          <span class="fs-5 fw-bold">{{ user.fullName }}</span>
+          <span>{{ user.phone }} </span>
+          <span>{{ user.email }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
