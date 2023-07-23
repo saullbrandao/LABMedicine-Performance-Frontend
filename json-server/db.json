@@ -464,5 +464,13 @@
       "amountPerWeek": 2,
       "description": "Exercício de baixo impacto focado em fortalecimento do core e flexibilidade."
     }
-  ]
+  ],
+  "estatisticas": {
+    "patients": 10,
+    "appointments": 14,
+    "exams": 8,
+    "medications": 11,
+    "exercises": 6,
+    "diets": 4
+  }
 }

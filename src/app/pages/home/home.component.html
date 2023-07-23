@@ -1,5 +1,29 @@
 <div class="p-4">
   <section>
+    <h2 class="text-center text-md-start">Estatísticas do Sistema</h2>
+    <div>
+      <ul class="row row-cols-6 g-3 p-0">
+        <li
+          class="col"
+          style="list-style: none"
+          *ngFor="let stat of systemStats | keyvalue : keepOrder"
+        >
+          <div class="card d-flex align-items-center gap-1 p-1 shadow">
+            <div
+              class="d-flex flex-column flex-md-row gap-1 align-items-center"
+            >
+              <i class="bi fs-1" ngClass="bi-{{ stat.value.icon }}"></i>
+              <span class="fs-1 fw-bold">{{ stat.value.quantity }}</span>
+            </div>
+            <span class="fw-bold d-none d-md-block">{{
+              stat.key | titlecase
+            }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section>
     <h2 class="text-center text-md-start">Informações Rápidas de Pacientes</h2>
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"
