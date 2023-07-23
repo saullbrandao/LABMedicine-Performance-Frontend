@@ -13,7 +13,7 @@ const routes: Routes = [
     // canActivate: [],
   },
   {
-    path: 'examregistration',
+    path: 'exams',
     children: [
       {
         path: '',
