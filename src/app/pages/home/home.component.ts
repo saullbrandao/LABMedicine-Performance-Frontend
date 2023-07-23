@@ -18,4 +18,18 @@ export class HomeComponent {
       this.filteredPatients = data;
     });
   }
+
+  filterPatients(searchTerm: string) {
+    this.filteredPatients = this.patients.filter((patient) => {
+      const name = patient.name.toLowerCase();
+      const term = searchTerm.toLowerCase();
+
+      return (
+        name.includes(term) ||
+        patient.email.includes(term) ||
+        patient.phone.includes(term) ||
+        patient.cpf.includes(term)
+      );
+    });
+  }
 }

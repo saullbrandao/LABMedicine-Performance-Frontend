@@ -1,6 +1,28 @@
 <div class="p-4">
   <section>
     <h2 class="text-center text-md-start">Informações Rápidas de Pacientes</h2>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1"
+        ><i class="bi bi-search"></i
+      ></span>
+      <input
+        #searchPatientInput
+        id="search-patient"
+        type="text"
+        class="form-control"
+        placeholder="Busca por nome, cpf, telefone ou email"
+        aria-label="Search Patient"
+        aria-describedby="basic-addon1"
+        (keyup)="filterPatients(searchPatientInput.value)"
+      />
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="filterPatients(searchPatientInput.value)"
+      >
+        Buscar
+      </button>
+    </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 pb-4">
       <div class="col" *ngFor="let patient of filteredPatients">
