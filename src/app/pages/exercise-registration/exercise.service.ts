@@ -7,7 +7,7 @@ import { API_URL } from 'src/app/utils/constants';
   providedIn: 'root',
 })
 export class ExerciseService {
-  baseURL = `${API_URL}/exercises`;
+  baseURL = `${API_URL}/exercicios`;
   constructor(private http: HttpClient) {}
 
   private create(exercise: Exercise) {
