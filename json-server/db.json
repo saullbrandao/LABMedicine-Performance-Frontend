@@ -402,5 +402,67 @@
       "pacienteId": 7,
       "status": true
     }
+  ],
+  "exercicios": [
+    {
+      "id": 1,
+      "patientId": 1,
+      "name": "Corrida",
+      "date": "2023-01-01",
+      "time": "08:00",
+      "type": "RESISTENCIA_AEROBICA",
+      "amountPerWeek": 3,
+      "description": "Corrida ao ar livre para resistência cardiovascular."
+    },
+    {
+      "id": 2,
+      "patientId": 2,
+      "name": "Musculação",
+      "date": "2023-01-02",
+      "time": "15:30",
+      "type": "RESISTENCIA_MUSCULAR",
+      "amountPerWeek": 4,
+      "description": "Treinamento de força usando pesos e máquinas de resistência."
+    },
+    {
+      "id": 3,
+      "patientId": 3,
+      "name": "Yoga",
+      "date": "2023-01-03",
+      "time": "10:00",
+      "type": "FLEXIBILIDADE",
+      "amountPerWeek": 2,
+      "description": "Exercícios suaves de alongamento e respiração para flexibilidade e relaxamento."
+    },
+    {
+      "id": 4,
+      "patientId": 4,
+      "name": "Flexões",
+      "date": "2023-01-04",
+      "time": "16:45",
+      "type": "FORCA",
+      "amountPerWeek": 5,
+      "description": "Exercício com o peso do corpo direcionado ao peito, ombros e tríceps."
+    },
+    {
+      "id": 5,
+      "patientId": 5,
+      "name": "Drills de Escada de Agilidade",
+      "date": "2023-01-05",
+      "time": "09:30",
+      "type": "AGILIDADE",
+      "amountPerWeek": 3,
+      "description": "Exercícios de agilidade com movimentação rápida usando escada de agilidade."
+    },
+    {
+      "id": 6,
+      "patientId": 6,
+      "name": "Pilates",
+      "date": "2023-01-06",
+      "time": "17:00",
+      "type": "OUTRO",
+      "amountPerWeek": 2,
+      "description": "Exercício de baixo impacto focado em fortalecimento do core e flexibilidade."
+    }
   ]
 }
