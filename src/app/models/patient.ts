@@ -1,8 +1,8 @@
 import { Address } from "./address";
 
 export type Patient = {
-  id: number;
-  fullName: string;
+  id: number,
+  name: string,
   gender: string,
   birthDate: string,
   cpf: string,
@@ -17,5 +17,6 @@ export type Patient = {
   healthInsurance: string,
   insuranceNumber: number,
   insuranceValidity: string,
+  status:boolean,
   address: Address
 }

@@ -92,7 +92,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
     this.form.patchValue({
       patientId: patient.id,
     });
-    this.patientInput.nativeElement.value = patient.fullName;
+    this.patientInput.nativeElement.value = patient.name;
   }
 
   onSubmit() {

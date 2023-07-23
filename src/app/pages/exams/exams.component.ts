@@ -1,19 +1,20 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import { PatientService } from "../../services/patient/patient.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ExamRegistrationResponse, ExamService } from "../../services/exam/exam.service";
+import { ExamService } from "../../services/exam/exam.service";
 import { NotificationService } from "../../services/notification/notification.service";
 import { Patient } from "../../models/patient";
 import { Subject, takeUntil } from "rxjs";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Exam } from "../../models/exam";
+import { Response } from "../../models/response";
 
 @Component({
-  selector: 'app-exam-registration',
-  templateUrl: './exam-registration.component.html',
-  styleUrls: ['./exam-registration.component.css']
+  selector: 'app-exams',
+  templateUrl: './exams.component.html',
+  styleUrls: ['./exams.component.css']
 })
-export class ExamRegistrationComponent {
+export class ExamsComponent {
   @ViewChild('patientInput') patientInput!: ElementRef;
 
   form: FormGroup;
@@ -83,15 +84,15 @@ export class ExamRegistrationComponent {
         ]
       ],
        url: [ exam?.url || '' ],
-      result: [
-        exam?.result || '',
+      results: [
+        exam?.results || '',
         [
           Validators.required,
           Validators.minLength(16),
           Validators.maxLength(1024)
         ]
       ],
-      status: [ exam?.status || true ]
+      status: [ exam ? exam.status : true ]
     }
   }
 
@@ -105,11 +106,12 @@ export class ExamRegistrationComponent {
 
   setPatient(patient: Patient) {
     this.patientFormField?.setValue(patient.id);
-    this.patientInput.nativeElement.value = patient.fullName;
+    this.patientInput.nativeElement.value = patient.name;
+
   }
 
-  toastResponse = (response: ExamRegistrationResponse) => {
-    if(![200, 201, 204].includes(response.status)) {
+  toastResponse = (response: Response) => {
+    if(![200, 201, 202].includes(response.status)) {
       this.notificationService.error(response.message);
 
       if(response.status === 404) this.goToRegistration();
@@ -120,7 +122,7 @@ export class ExamRegistrationComponent {
     this.notificationService.success(response.message);
 
     if(response.status === 201) this.formReset();
-    if(response.status === 204) this.goToRegistration();
+    if(response.status === 202 && response.message.includes('excluído')) this.goToRegistration();
   }
 
   goToRegistration(){
@@ -128,6 +130,7 @@ export class ExamRegistrationComponent {
   }
 
   formReset(){
+    this.patientInput.nativeElement.value = '';
     this.form = this.formBuilder.group(this.getFormData());
   }
 
@@ -141,12 +144,10 @@ export class ExamRegistrationComponent {
       return;
     }
 
-    console.log(this.form.value);
-
     this.examService.save(this.form.value);
   }
 
-  loadExam = (response: ExamRegistrationResponse) => {
+  loadExam = (response: Response) => {
     const exam = response.data as Exam;
     this.form = this.formBuilder.group(this.getFormData(exam));
   }

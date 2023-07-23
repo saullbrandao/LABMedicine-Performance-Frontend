@@ -1,19 +1,19 @@
 import { Injectable } from "@angular/core";
-import { Exam } from "../../models/exam";
 import { catchError, Subject, throwError } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { API_URL } from "../../utils/constants";
+import { Diet } from "../../models/diet";
 import { Response } from "../../models/response";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ExamService {
-  examSaved = new Subject<Response>();
-  examDeleted = new Subject<Response>();
-  editingExamLoaded = new Subject<Response>();
+export class DietService {
+  dietSaved = new Subject<Response>();
+  dietDeleted = new Subject<Response>();
+  editingDietLodaded = new Subject<Response>();
   httpError = new Subject<Response>();
-  baseUrl = `${API_URL}/exames`;
+  baseUrl = `${API_URL}/dietas`;
 
   constructor(private http: HttpClient) {
   }
@@ -22,45 +22,43 @@ export class ExamService {
     this.http.get(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError))
       .subscribe(data => {
-        this.editingExamLoaded.next({
-          status:200,
-          message: 'Exame encontrado com sucesso',
+        this.editingDietLodaded.next({
+          status: 200,
+          message: 'Dieta encontrada com sucesso',
           data
         });
       });
   }
 
-  save(exam: Exam) {
-    console.log(exam);
-    if(exam.id) {
-      this.http.put(`${this.baseUrl}/${exam.id}`, exam)
-        .pipe(catchError(this.handleError))
+  save(diet: Diet) {
+    if(diet.id) {
+      this.http.put(`${this.baseUrl}/${diet.id}`, diet)
         .subscribe(data => {
-          this.examSaved.next({
+          this.dietSaved.next({
             status: 202,
-            message: 'Exame atualizado com sucesso',
+            message: "Dieta atualizada com sucesso",
             data
           });
         });
     } else {
-      this.http.post<Exam>(`${this.baseUrl}`, exam)
+      this.http.post<Diet>(`${this.baseUrl}`, diet)
         .subscribe(data => {
-          this.examSaved.next({
+          this.dietSaved.next({
             status: 201,
-            message: 'Exame cadastrado com sucesso',
-            data
+            message: 'Dieta cadastrada com sucesso',
+            data: data
           });
         });
     }
   }
 
-  delete(examId: number) {
-    this.http.delete(`${this.baseUrl}/${examId}`)
+  delete(dietId: number) {
+    this.http.delete(`${this.baseUrl}/${dietId}`)
       .subscribe(data => {
-        this.examDeleted.next({
+        this.dietDeleted.next({
           status: 202,
-          message: 'Exame excluído com sucesso',
-          data
+          message: 'Dieta excluída com sucesso',
+          data: undefined
         });
       });
   }
@@ -69,7 +67,7 @@ export class ExamService {
     if(error.status === 404) {
       this.httpError.next({
         status: error.status,
-        message: 'Exame não encontrado',
+        message: 'Dieta não encontrada',
         data: undefined
       });
     }

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
-import { ExamRegistrationComponent } from './pages/exam-registration/exam-registration.component';
 import { ExerciseComponent } from './pages/exercises/exercise.component';
 import { ExerciseResolver } from './pages/exercises/exercise.resolver';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ExamsComponent } from './pages/exams/exams.component';
+import { DietsComponent } from './pages/diets/diets.component';
 
 const routes: Routes = [
   {
@@ -15,15 +16,28 @@ const routes: Routes = [
     // canActivate: [],
   },
   {
-    path: 'examregistration',
+    path: 'exams',
     children: [
       {
         path: '',
-        component: ExamRegistrationComponent,
+        component: ExamsComponent,
       },
       {
         path: ':id',
-        component: ExamRegistrationComponent,
+        component: ExamsComponent,
+      },
+    ],
+  },
+  {
+    path: 'diets',
+    children: [
+      {
+        path: '',
+        component: DietsComponent,
+      },
+      {
+        path: ':id',
+        component: DietsComponent,
       },
     ],
   },
