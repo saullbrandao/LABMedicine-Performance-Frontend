@@ -30,6 +30,7 @@
         type="text"
         id="patient"
         readonly
+        [disabled]="disablePatientInput"
       >
       <span class="invalid-feedback">
         Selecione um paciente
@@ -98,13 +99,14 @@
 
     <div>
       <label class="form-label fw-bold" for="description">Descrição*</label>
-      <input
+      <textarea
         class="form-control"
         [class.is-invalid]="isInvalid('description')"
-        type="text"
         id="description"
+        rows="7"
+        maxlength="1024"
         formControlName="description"
-      >
+      ></textarea>
       <span class="invalid-feedback">
         Digite uma descrição válida (Mínimo 10 e máximo 1000 caracteres)
       </span>

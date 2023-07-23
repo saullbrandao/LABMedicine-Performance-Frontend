@@ -19,6 +19,7 @@ export class DietsComponent {
   form: FormGroup;
   private componentDestroyed = new Subject();
   editMode = false;
+  disablePatientInput = true;
   header = 'Preencha os campos para cadastrar nova dieta';
   confirmMessage = 'Esta dieta será excluída. Confirma a operação?'
   typeOptions: {label: string, code: string}[] = [
@@ -106,6 +107,7 @@ export class DietsComponent {
   setPatient(patient: Patient) {
     this.patientFormField?.setValue(patient.id);
     this.patientInput.nativeElement.value = patient.name;
+    this.disablePatientInput = false;
   }
 
   toastResponse = (response: Response) => {

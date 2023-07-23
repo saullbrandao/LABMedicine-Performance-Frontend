@@ -30,6 +30,7 @@
         type="text"
         id="patient"
         readonly
+        [disabled]="disablePatientInput"
       >
       <span class="invalid-feedback">
         Selecione um paciente
@@ -118,13 +119,14 @@
 
     <div>
       <label class="form-label fw-bold" for="results">Resultado*</label>
-      <input
+      <textarea
         class="form-control"
         [class.is-invalid]="isInvalid('result')"
-        type="text"
         id="results"
+        rows="7"
+        maxlength="1024"
         formControlName="results"
-      >
+      ></textarea>
       <span class="invalid-feedback">
         Digite um resultado válido (Mínimo 16 e máximo 1024 caracteres)
       </span>

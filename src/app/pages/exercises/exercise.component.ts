@@ -29,6 +29,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   exerciseType = ExerciseType;
   patientSelectedId: number | null = null;
   isEditing: boolean = false;
+  disablePatientInput = true;
   confirmMessage = 'Este exercício será excluído. Confirma a operação?';
 
   private unsubscribe$ = new Subject<void>();
@@ -93,6 +94,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
       patientId: patient.id,
     });
     this.patientInput.nativeElement.value = patient.name;
+    this.disablePatientInput = false;
   }
 
   onSubmit() {

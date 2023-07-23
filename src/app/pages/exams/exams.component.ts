@@ -21,6 +21,7 @@ export class ExamsComponent {
   patientFormFieldOptions: {id: number, name: string}[] = [];
   private componentDestroyed = new Subject();
   editMode = false;
+  disablePatientInput = true;
   header = 'Preencha os campos para cadastrar novo exame';
   confirmMessage = 'Este exame será excluído. Confirma a operação?'
 
@@ -107,7 +108,7 @@ export class ExamsComponent {
   setPatient(patient: Patient) {
     this.patientFormField?.setValue(patient.id);
     this.patientInput.nativeElement.value = patient.name;
-
+    this.disablePatientInput = false;
   }
 
   toastResponse = (response: Response) => {
