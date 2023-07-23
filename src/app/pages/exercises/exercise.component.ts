@@ -18,11 +18,11 @@ import { DateTimeService } from 'src/app/services/date-time.service';
 
 // TODO: redirect the user to the appropriate page after the operation is done
 @Component({
-  selector: 'app-exercise-registration',
-  templateUrl: './exercise-registration.component.html',
-  styleUrls: ['./exercise-registration.component.css'],
+  selector: 'app-exercise',
+  templateUrl: './exercise.component.html',
+  styleUrls: ['./exercise.component.css'],
 })
-export class ExerciseRegistrationComponent implements OnInit, OnDestroy {
+export class ExerciseComponent implements OnInit, OnDestroy {
   @ViewChild('patientInput') patientInput!: ElementRef<HTMLInputElement>;
 
   form: FormGroup;

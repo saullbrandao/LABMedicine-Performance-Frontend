@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
 import { ExamRegistrationComponent } from './pages/exam-registration/exam-registration.component';
-import { ExerciseRegistrationComponent } from './pages/exercise-registration/exercise-registration.component';
-import { ExerciseResolver } from './pages/exercise-registration/exercise.resolver';
+import { ExerciseComponent } from './pages/exercises/exercise.component';
+import { ExerciseResolver } from './pages/exercises/exercise.resolver';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
@@ -28,15 +28,15 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'exerciseregistration',
+    path: 'exercises',
     children: [
       {
         path: '',
-        component: ExerciseRegistrationComponent,
+        component: ExerciseComponent,
       },
       {
         path: ':id',
-        component: ExerciseRegistrationComponent,
+        component: ExerciseComponent,
         resolve: { exercise: ExerciseResolver },
       },
     ],
@@ -48,8 +48,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent,
-    title: '404 | Not found',
+    redirectTo: 'not-found',
   },
 ];
 
