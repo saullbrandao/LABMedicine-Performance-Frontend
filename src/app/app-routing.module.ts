@@ -6,6 +6,7 @@ import { ExerciseResolver } from './pages/exercises/exercise.resolver';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ExamsComponent } from './pages/exams/exams.component';
 import { DietsComponent } from './pages/diets/diets.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,11 @@ const routes: Routes = [
         resolve: { exercise: ExerciseResolver },
       },
     ],
+  },
+  {
+    path: '',
+    component: HomeComponent,
+    title: 'Página Inicial',
   },
   {
     path: 'not-found',

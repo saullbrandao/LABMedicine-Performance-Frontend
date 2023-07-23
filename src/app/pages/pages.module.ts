@@ -8,6 +8,9 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { DietsComponent } from './diets/diets.component';
 import { ExerciseComponent } from './exercises/exercise.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
+import { AgePipe } from '../pipes/age.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     DietsComponent,
     ExerciseComponent,
     NotFoundComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +27,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NgxMaskDirective,
     NgxMaskPipe,
     ComponentsModule,
+    RouterModule,
+    AgePipe,
   ],
   providers: [provideNgxMask(), DatePipe],
 })

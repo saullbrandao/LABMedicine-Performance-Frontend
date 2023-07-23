@@ -1,0 +1,30 @@
+<div class="p-4">
+  <section>
+    <h2 class="text-center text-md-start">Informações Rápidas de Pacientes</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 pb-4">
+      <div class="col" *ngFor="let patient of filteredPatients">
+        <div
+          class="card d-flex flex-column align-items-center gap-2 p-3 shadow"
+        >
+          <i class="bi bi-person-circle" style="font-size: 5rem"></i>
+          <span class="fs-5 fw-bold">{{ patient.name }}</span>
+          <span>{{ patient.birthDate | age }} anos</span>
+          <span>{{ patient.email }}</span>
+          <span
+            class="fw-bold"
+            ngClass="{{
+              patient.healthInsurance ? 'text-primary' : 'text-warning'
+            }}"
+            >{{ patient.healthInsurance || "Sem convênio" }}</span
+          >
+          <a
+            class="btn btn-outline-dark"
+            routerLink="/patients/{{ patient.id }}"
+            >Ver mais</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
