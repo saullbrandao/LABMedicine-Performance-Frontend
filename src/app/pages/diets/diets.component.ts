@@ -128,6 +128,7 @@ export class DietsComponent {
   }
 
   formReset(){
+    this.patientInput.nativeElement.value = '';
     this.form = this.formBuilder.group(this.getFormData());
   }
 
