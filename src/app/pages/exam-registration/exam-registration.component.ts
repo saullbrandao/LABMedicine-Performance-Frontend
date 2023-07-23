@@ -105,7 +105,8 @@ export class ExamRegistrationComponent {
 
   setPatient(patient: Patient) {
     this.patientFormField?.setValue(patient.id);
-    this.patientInput.nativeElement.value = patient.fullName;
+    this.patientInput.nativeElement.value = patient.name;
+
   }
 
   toastResponse = (response: ExamRegistrationResponse) => {
@@ -140,8 +141,6 @@ export class ExamRegistrationComponent {
 
       return;
     }
-
-    console.log(this.form.value);
 
     this.examService.save(this.form.value);
   }

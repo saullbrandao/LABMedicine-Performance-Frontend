@@ -5,11 +5,11 @@ import { ComponentsModule } from "../components/components.module";
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { DietsComponent } from './diets/diets.component';
 
 @NgModule({
-  declarations: [UserRegistrationComponent, ExamRegistrationComponent],
+  declarations: [UserRegistrationComponent, ExamRegistrationComponent, DietsComponent],
   imports: [CommonModule, ReactiveFormsModule, NgxMaskDirective, NgxMaskPipe, ComponentsModule],
   providers: [provideNgxMask()],
-
 })
 export class PagesModule {}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
 import { ExamRegistrationComponent } from "./pages/exam-registration/exam-registration.component";
+import { DietsComponent } from "./pages/diets/diets.component";
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
     title: 'Cadastro de Usuários',
     // TODO: add authorization
     // canActivate: [],
-  },  
+  },
   {
     path: 'examregistration',
     children: [
@@ -21,6 +22,19 @@ const routes: Routes = [
       {
         path: ':id',
         component: ExamRegistrationComponent
+      }
+    ]
+  },
+  {
+    path: 'diets',
+    children: [
+      {
+        path: '',
+        component: DietsComponent
+      },
+      {
+        path: ':id',
+        component: DietsComponent
       }
     ]
   }

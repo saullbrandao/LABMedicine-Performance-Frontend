@@ -10,7 +10,7 @@ import { Subject } from "rxjs";
 export class PatientService {
   patientsLoaded = new Subject<Patient[]>();
   searchedPatients = new Subject<Patient[]>();
-  baseUrl = `${API_URL}/patients`;
+  baseUrl = `${API_URL}/pacientes`;
 
   constructor(private http: HttpClient) {
   }
@@ -23,7 +23,7 @@ export class PatientService {
   }
 
   getAllByName(name: string) {
-    const url = `${API_URL}/patients?fullName_like=${name}`;
+    const url = `${this.baseUrl}?name=${name}`;
 
     this.http.get<Patient[]>(url)
       .subscribe(data => {
