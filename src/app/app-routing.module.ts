@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
-import { ExamRegistrationComponent } from "./pages/exam-registration/exam-registration.component";
+import { ExamsComponent } from "./pages/exams/exams.component";
 import { DietsComponent } from "./pages/diets/diets.component";
 
 const routes: Routes = [
@@ -17,11 +17,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ExamRegistrationComponent
+        component: ExamsComponent
       },
       {
         path: ':id',
-        component: ExamRegistrationComponent
+        component: ExamsComponent
       }
     ]
   },

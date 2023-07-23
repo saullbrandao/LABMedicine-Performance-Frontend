@@ -3,75 +3,65 @@ import { Exam } from "../../models/exam";
 import { catchError, Subject, throwError } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { API_URL } from "../../utils/constants";
-
-export type ExamRegistrationResponse = {
-  status: number,
-  message: string,
-  data: any
-};
+import { Response } from "../../models/response";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExamService {
-  examSaved = new Subject<ExamRegistrationResponse>();
-  examDeleted = new Subject<ExamRegistrationResponse>();
-  editingExamLoaded = new Subject<ExamRegistrationResponse>();
-  httpError = new Subject<ExamRegistrationResponse>();
+  examSaved = new Subject<Response>();
+  examDeleted = new Subject<Response>();
+  editingExamLoaded = new Subject<Response>();
+  httpError = new Subject<Response>();
+  baseUrl = `${API_URL}/exames`;
 
   constructor(private http: HttpClient) {
   }
 
   get(id: number) {
-    this.http.get(`${API_URL}/exams/${id}`)
+    this.http.get(`${this.baseUrl}/${id}`)
       .pipe(catchError(this.handleError))
       .subscribe(data => {
-        // TODO: call real api and use its response (currently using json server)
-        const response = {
-          status: 200,
+        this.editingExamLoaded.next({
+          status:200,
           message: 'Exame encontrado com sucesso',
           data
-        }
-        this.editingExamLoaded.next(response);
+        });
       });
   }
 
   save(exam: Exam) {
+    console.log(exam);
     if(exam.id) {
-      this.http.put(`${API_URL}/exams/${exam.id}`, exam)
+      this.http.put(`${this.baseUrl}/${exam.id}`, exam)
+        .pipe(catchError(this.handleError))
         .subscribe(data => {
-          // TODO: call real api and use its response (currently using json server)
-          const response = {
-            status: 200,
+          this.examSaved.next({
+            status: 202,
             message: 'Exame atualizado com sucesso',
             data
-          }
-          this.examSaved.next(response);
+          });
         });
     } else {
-      this.http.post<Exam>(`${API_URL}/exams`, exam)
+      this.http.post<Exam>(`${this.baseUrl}`, exam)
         .subscribe(data => {
-          // TODO: call real api and use its response (currently using json server)
-          const response = {
+          this.examSaved.next({
             status: 201,
             message: 'Exame cadastrado com sucesso',
             data
-          }
-          this.examSaved.next(response);
+          });
         });
     }
   }
 
   delete(examId: number) {
-    this.http.delete(`${API_URL}/exams/${examId}`)
+    this.http.delete(`${this.baseUrl}/${examId}`)
       .subscribe(data => {
-        // TODO: call real api and use its response (currently using json server)
-        const response = {
-          status: 204,
+        this.examDeleted.next({
+          status: 202,
           message: 'Exame excluído com sucesso',
           data
-        }
-        this.examDeleted.next(response);
+        });
       });
   }
 

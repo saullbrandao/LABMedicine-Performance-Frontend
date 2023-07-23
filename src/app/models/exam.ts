@@ -6,7 +6,7 @@ export type Exam = {
   type: string;
   laboratory: string;
   url: string;
-  result: string;
+  results: string;
   status: boolean;
   patientId: number;
   patientName: string;
