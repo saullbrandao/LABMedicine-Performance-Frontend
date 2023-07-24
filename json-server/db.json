@@ -1,10 +1,112 @@
 {
-  "patients": [
+  "usuarios": [
     {
       "id": 1,
-      "fullName": "Álvaro da Cruz",
+      "name": "John Doe",
+      "gender": "Male",
+      "cpf": "12345678901",
+      "phone": "1234567890",
+      "email": "john.doe@example.com",
+      "password": "securepassword",
+      "type": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "gender": "Female",
+      "cpf": "98765432101",
+      "phone": "9876543210",
+      "email": "jane.smith@example.com",
+      "password": "strongpassword",
+      "type": "doctor"
+    },
+    {
+      "id": 3,
+      "name": "Michael Johnson",
+      "gender": "Male",
+      "cpf": "45678912301",
+      "phone": "4567891230",
+      "email": "michael.johnson@example.com",
+      "password": "password123",
+      "type": "nurse"
+    },
+    {
+      "id": 4,
+      "name": "Emily Wilson",
+      "gender": "Female",
+      "cpf": "78912345601",
+      "phone": "7891234560",
+      "email": "emily.wilson@example.com",
+      "password": "secretpass",
+      "type": "admin"
+    },
+    {
+      "id": 5,
+      "name": "David Lee",
+      "gender": "Male",
+      "cpf": "45612378901",
+      "phone": "4561237890",
+      "email": "david.lee@example.com",
+      "password": "mypassword",
+      "type": "doctor"
+    },
+    {
+      "id": 6,
+      "name": "Sarah Davis",
+      "gender": "Female",
+      "cpf": "65432198701",
+      "phone": "6543219870",
+      "email": "sarah.davis@example.com",
+      "password": "securepass",
+      "type": "nurse"
+    },
+    {
+      "id": 7,
+      "name": "Robert Brown",
+      "gender": "Male",
+      "cpf": "78945612301",
+      "phone": "7894561230",
+      "email": "robert.brown@example.com",
+      "password": "mypassword123",
+      "type": "admin"
+    },
+    {
+      "id": 8,
+      "name": "Amanda Johnson",
+      "gender": "Female",
+      "cpf": "32165498701",
+      "phone": "3216549870",
+      "email": "amanda.johnson@example.com",
+      "password": "strongpass",
+      "type": "doctor"
+    },
+    {
+      "id": 9,
+      "name": "Daniel Miller",
+      "gender": "Male",
+      "cpf": "65478932101",
+      "phone": "6547893210",
+      "email": "daniel.miller@example.com",
+      "password": "password@123",
+      "type": "nurse"
+    },
+    {
+      "id": 10,
+      "name": "Olivia Martinez",
+      "gender": "Female",
+      "cpf": "32198765401",
+      "phone": "321-987-6540",
+      "email": "olivia.martinez@example.com",
+      "password": "pass123",
+      "type": "admin"
+    }
+  ],
+  "pacientes": [
+    {
+      "id": 1,
+      "name": "Álvaro da Cruz",
       "gender": "male",
-      "birthDate": "1975-12-07T04:54:58.100Z",
+      "birthDate": "1975-12-07",
       "cpf": "406.120.206-51",
       "rg": "4357050627",
       "maritalStatus": "married",
@@ -30,9 +132,9 @@
     },
     {
       "id": 2,
-      "fullName": "Huberto das Neves",
+      "name": "Huberto das Neves",
       "gender": "male",
-      "birthDate": "1970-02-19T18:21:00.499Z",
+      "birthDate": "1970-02-19",
       "cpf": "984.501.097-21",
       "rg": "2095055960",
       "maritalStatus": "single",
@@ -58,9 +160,9 @@
     },
     {
       "id": 3,
-      "fullName": "Nena Aragão",
+      "name": "Nena Aragão",
       "gender": "female",
-      "birthDate": "1976-04-12T23:49:40.213Z",
+      "birthDate": "1976-04-12",
       "cpf": "567.027.821-16",
       "rg": "7232146496",
       "maritalStatus": "single",
@@ -86,9 +188,9 @@
     },
     {
       "id": 4,
-      "fullName": "Tereza Araújo",
+      "name": "Tereza Araújo",
       "gender": "female",
-      "birthDate": "1998-10-16T04:21:55.769Z",
+      "birthDate": "1998-10-16",
       "cpf": "681.123.394-15",
       "rg": "1140680681",
       "maritalStatus": "married",
@@ -114,9 +216,9 @@
     },
     {
       "id": 5,
-      "fullName": "Linda Alves",
+      "name": "Linda Alves",
       "gender": "female",
-      "birthDate": "1954-07-02T22:09:30.778Z",
+      "birthDate": "1954-07-02",
       "cpf": "005.387.325-73",
       "rg": "3789374136",
       "maritalStatus": "divorced",
@@ -142,9 +244,9 @@
     },
     {
       "id": 6,
-      "fullName": "Melissa Duarte",
+      "name": "Melissa Duarte",
       "gender": "female",
-      "birthDate": "1999-07-18T21:19:50.681Z",
+      "birthDate": "1999-07-18",
       "cpf": "662.378.460-88",
       "rg": "2462143725",
       "maritalStatus": "single",
@@ -170,9 +272,9 @@
     },
     {
       "id": 7,
-      "fullName": "Delmano Porto",
+      "name": "Delmano Porto",
       "gender": "male",
-      "birthDate": "1967-08-24T09:45:49.881Z",
+      "birthDate": "1967-08-24",
       "cpf": "070.668.853-41",
       "rg": "1665547482",
       "maritalStatus": "single",
@@ -198,9 +300,9 @@
     },
     {
       "id": 8,
-      "fullName": "Huberto Silva",
+      "name": "Huberto Silva",
       "gender": "male",
-      "birthDate": "1970-07-12T00:53:07.752Z",
+      "birthDate": "1970-07-12",
       "cpf": "657.050.032-48",
       "rg": "2064170846",
       "maritalStatus": "single",
@@ -226,9 +328,9 @@
     },
     {
       "id": 9,
-      "fullName": "Julião Souza",
+      "name": "Julião Souza",
       "gender": "male",
-      "birthDate": "1957-09-10T11:51:25.702Z",
+      "birthDate": "1957-09-10",
       "cpf": "649.253.237-07",
       "rg": "2569504326",
       "maritalStatus": "divorced",
@@ -254,9 +356,9 @@
     },
     {
       "id": 10,
-      "fullName": "Geane da Luz",
+      "name": "Geane da Luz",
       "gender": "female",
-      "birthDate": "1991-08-25T03:34:37.519Z",
+      "birthDate": "1991-08-25",
       "cpf": "009.207.157-22",
       "rg": "1549216609",
       "maritalStatus": "single",
@@ -281,7 +383,7 @@
       }
     }
   ],
-  "exams": [
+  "exames": [
     {
       "id": 1,
       "patientId": 5,
@@ -335,7 +437,7 @@
       "status": true
     }
   ],
-  "appointments": [
+  "consultas": [
     {
       "id": 1,
       "reason": "Investigar sintomas recentes",

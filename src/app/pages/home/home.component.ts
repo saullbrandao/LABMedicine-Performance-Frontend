@@ -3,6 +3,7 @@ import { Patient } from 'src/app/models/patient';
 import { User } from 'src/app/models/user';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { StatsService } from 'src/app/services/stats.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -43,10 +44,18 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private patientService: PatientService,
+    private userService: UserService,
     private statsService: StatsService
   ) {}
 
   ngOnInit(): void {
+    // TODO: only do this if the user is a ADMIN
+    this.userService.getAll().subscribe((data) => {
+      this.users = data;
+      this.filteredUsers = data;
+    });
+    // END TODO
+
     this.patientService.getAll();
     this.patientService.patientsLoaded.subscribe((data) => {
       this.patients = data;
@@ -79,7 +88,7 @@ export class HomeComponent implements OnInit {
 
   filterUsers(searchTerm: string) {
     this.filteredUsers = this.users.filter((user) => {
-      const name = user.fullName.toLowerCase();
+      const name = user.name.toLowerCase();
       const term = searchTerm.toLowerCase();
 
       return (
