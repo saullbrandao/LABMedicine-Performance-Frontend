@@ -130,6 +130,59 @@
       </ul>
     </div>
   </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button
+        class="accordion-button fw-bold"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#medications"
+        aria-expanded="true"
+        aria-controls="medications"
+      >
+        Medicações
+      </button>
+    </h3>
+    <div id="medications" class="accordion-collapse collapse show">
+      <ul
+        *ngIf="medicalRecord.medications.length > 0; else noMedications"
+        class="accordion-body d-flex flex-column gap-4"
+      >
+        <li
+          class="card bg-white p-3"
+          *ngFor="let medication of medicalRecord.medications"
+        >
+          <div class="d-flex justify-content-between">
+            <h4 class="card-title d-flex gap-4">Nome: {{ medication.name }}</h4>
+            <a
+              class="btn btn-primary px-5 text-light rounded-0 d-flex justify-content-center align-items-center gap-2"
+              type="button"
+              routerLink="/medicacoes/{{ medication.id }}"
+            >
+              <i class="bi bi-pencil-square"></i>
+              <span class="d-none d-sm-block"> Editar</span>
+            </a>
+          </div>
+
+          <div class="">
+            <div class="row">
+              <p class="fw-semibold col-md-2">
+                Data: {{ medication.date | date : "dd/MM/yyyy" }}
+              </p>
+              <p class="fw-semibold col-md-2">Hora: {{ medication.time }}</p>
+            </div>
+            <p class="fw-semibold">
+              Quantidade:
+              {{ medication.quantity }}
+            </p>
+            <p>Tipo: {{ medication.type }}</p>
+            <p>Unidade: {{ medication.unit | titlecase }}</p>
+            <p>Observações: {{ medication.observations }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 <ng-template #noAppointments>
@@ -137,4 +190,7 @@
 </ng-template>
 <ng-template #noExams>
   <p>Nenhum exame cadastrada para esse paciente.</p>
+</ng-template>
+<ng-template #noMedications>
+  <p>Nenhuma medicação cadastrada para esse paciente.</p>
 </ng-template>
