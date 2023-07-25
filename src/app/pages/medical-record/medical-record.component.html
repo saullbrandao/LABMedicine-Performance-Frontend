@@ -1,0 +1,20 @@
+<div class="p-4">
+  <h2>Paciente: {{ medicalRecord.patient.name }}</h2>
+  <p>
+    <span class="fw-semibold"> Convênio: </span>
+    {{ medicalRecord.patient.healthInsurance || "Sem Plano" | titlecase }}
+  </p>
+  <p>
+    <span class="fw-semibold"> Contato de Emergência: </span>
+    {{ medicalRecord.patient.emergencyContact }}
+  </p>
+  <p>
+    <span class="fw-semibold"> Alergias: </span>
+    {{ medicalRecord.patient.allergyList || "Nenhuma" }}
+  </p>
+  <p>
+    <span class="fw-semibold"> Cuidados Específicos: </span>
+
+    {{ medicalRecord.patient.specificCareList || "Nenhum" }}
+  </p>
+</div>

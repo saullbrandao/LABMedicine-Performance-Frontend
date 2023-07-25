@@ -11,6 +11,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { AgePipe } from '../pipes/age.pipe';
+import { MedicalRecordComponent } from './medical-record/medical-record.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AgePipe } from '../pipes/age.pipe';
     ExerciseComponent,
     NotFoundComponent,
     HomeComponent,
+    MedicalRecordComponent,
   ],
   imports: [
     CommonModule,

@@ -574,5 +574,218 @@
     "medications": 11,
     "exercises": 6,
     "diets": 4
-  }
+  },
+  "prontuarios": [
+    {
+      "id": 1,
+      "patient": {
+        "id": 1,
+        "name": "John Doe",
+        "emergencyContact": "Jane Doe",
+        "healthInsurance": "XYZ Health Insurance",
+        "allergyList": "Pollen, Peanuts",
+        "specificCareList": "None"
+      },
+      "appointments": [
+        {
+          "id": 101,
+          "patientId": 1,
+          "reason": "Checkup",
+          "date": "2023-07-25",
+          "time": "10:00 AM",
+          "description": "Routine checkup and general health assessment",
+          "medication": "None",
+          "dosageAndPrecautions": "N/A",
+          "status": true
+        },
+        {
+          "id": 102,
+          "patientId": 1,
+          "reason": "Follow-up",
+          "date": "2023-08-10",
+          "time": "2:30 PM",
+          "description": "Follow-up on previous treatment",
+          "medication": "Aspirin",
+          "dosageAndPrecautions": "Take with food",
+          "status": false
+        }
+      ],
+      "exams": [
+        {
+          "id": 201,
+          "name": "Blood Test",
+          "date": "2023-07-30",
+          "time": "8:00 AM",
+          "type": "Routine",
+          "laboratory": "ABC Lab",
+          "url": "https://example.com/blood-test-results",
+          "results": "Normal",
+          "status": true,
+          "patientId": 1,
+          "patientName": "John Doe"
+        }
+      ],
+      "medications": [
+        {
+          "id": 301,
+          "patientId": 1,
+          "name": "Paracetamol",
+          "date": "2023-07-25",
+          "time": "12:00 PM",
+          "type": "Comprimido",
+          "quantity": "1 tablet",
+          "unit": "tablet",
+          "observations": "Take with water",
+          "status": true
+        }
+      ],
+      "diets": [
+        {
+          "id": 401,
+          "name": "Low Sodium Diet",
+          "date": "2023-07-25",
+          "time": "1:00 PM",
+          "type": "Regular",
+          "description": "Reduce sodium intake",
+          "status": true,
+          "patientId": 1,
+          "patientName": "John Doe"
+        }
+      ],
+      "exercises": [
+        {
+          "id": 501,
+          "patientId": 1,
+          "name": "Cardio Workout",
+          "date": "2023-07-25",
+          "time": "4:00 PM",
+          "type": "RESISTENCIA_AEROBICA",
+          "amountPerWeek": 3,
+          "description": "30 minutes of jogging",
+          "status": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+
+      "patient": {
+        "id": 2,
+        "name": "Alice Johnson",
+        "emergencyContact": "Bob Johnson",
+        "healthInsurance": "ABC Health Insurance",
+        "allergyList": "Penicillin",
+        "specificCareList": "None"
+      },
+      "appointments": [
+        {
+          "id": 103,
+          "patientId": 2,
+          "reason": "Flu Symptoms",
+          "date": "2023-07-27",
+          "time": "9:15 AM",
+          "description": "Fever, cough, and body ache",
+          "medication": "None",
+          "dosageAndPrecautions": "Get plenty of rest",
+          "status": true
+        }
+      ],
+      "exams": [
+        {
+          "id": 202,
+          "name": "X-ray",
+          "date": "2023-07-28",
+          "time": "11:30 AM",
+          "type": "Diagnostic",
+          "laboratory": "XYZ Imaging Center",
+          "url": "https://example.com/x-ray-results",
+          "results": "No abnormalities detected",
+          "status": true,
+          "patientId": 2,
+          "patientName": "Alice Johnson"
+        }
+      ],
+      "medications": [],
+      "diets": [
+        {
+          "id": 402,
+          "name": "Gluten-Free Diet",
+          "date": "2023-07-27",
+          "time": "1:00 PM",
+          "type": "Special",
+          "description": "Avoid gluten-containing foods",
+          "status": true,
+          "patientId": 2,
+          "patientName": "Alice Johnson"
+        }
+      ],
+      "exercises": [
+        {
+          "id": 502,
+          "patientId": 2,
+          "name": "Yoga",
+          "date": "2023-07-27",
+          "time": "5:00 PM",
+          "type": "FLEXIBILIDADE",
+          "amountPerWeek": 2,
+          "description": "Beginner-level yoga poses",
+          "status": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+
+      "patient": {
+        "id": 3,
+        "name": "Michael Smith",
+        "emergencyContact": "Emily Smith",
+        "healthInsurance": "123 Health Insurance",
+        "allergyList": "Shellfish",
+        "specificCareList": "Asthma"
+      },
+      "appointments": [
+        {
+          "id": 104,
+          "patientId": 3,
+          "reason": "Asthma Checkup",
+          "date": "2023-07-29",
+          "time": "3:00 PM",
+          "description": "Assess asthma symptoms and adjust treatment",
+          "medication": "Ventolin",
+          "dosageAndPrecautions": "Use as needed during shortness of breath",
+          "status": true
+        }
+      ],
+      "exams": [],
+      "medications": [
+        {
+          "id": 302,
+          "patientId": 3,
+          "name": "Montelukast",
+          "date": "2023-07-29",
+          "time": "9:00 AM",
+          "type": "Tablet",
+          "quantity": "1 tablet",
+          "unit": "tablet",
+          "observations": "Take before bedtime",
+          "status": true
+        }
+      ],
+      "diets": [],
+      "exercises": [
+        {
+          "id": 503,
+          "patientId": 3,
+          "name": "Breathing Exercises",
+          "date": "2023-07-29",
+          "time": "6:30 PM",
+          "type": "RESISTENCIA_AEROBICA",
+          "amountPerWeek": 4,
+          "description": "Deep breathing exercises to improve lung capacity",
+          "status": true
+        }
+      ]
+    }
+  ]
 }

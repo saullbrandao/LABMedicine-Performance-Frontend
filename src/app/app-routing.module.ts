@@ -7,7 +7,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ExamsComponent } from './pages/exams/exams.component';
 import { DietsComponent } from './pages/diets/diets.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MedicalRecordComponent } from './pages/medical-record/medical-record.component';
 
+// TODO: maybe translate the paths to portuguese
 const routes: Routes = [
   {
     path: 'register',
@@ -15,6 +17,15 @@ const routes: Routes = [
     title: 'Cadastro de Usuários',
     // TODO: add authorization
     // canActivate: [],
+  },
+  {
+    path: 'patients',
+    children: [
+      {
+        path: ':id/prontuario',
+        component: MedicalRecordComponent,
+      },
+    ],
   },
   {
     path: 'exams',
