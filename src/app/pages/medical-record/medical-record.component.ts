@@ -9,14 +9,32 @@ import { MedicalRecordService } from 'src/app/services/medical-record.service';
   templateUrl: './medical-record.component.html',
   styleUrls: ['./medical-record.component.css'],
 })
-export class MedicalRecordComponent implements OnDestroy {
-  medicalRecord: MedicalRecord = {} as MedicalRecord;
+export class MedicalRecordComponent implements OnInit, OnDestroy {
+  medicalRecord: MedicalRecord;
   private unsubscribe$ = new Subject<void>();
 
   constructor(
     private medicalRecordService: MedicalRecordService,
     private route: ActivatedRoute
   ) {
+    this.medicalRecord = {
+      patient: {
+        allergyList: '',
+        emergencyContact: '',
+        healthInsurance: '',
+        id: 0,
+        name: '',
+        specificCareList: '',
+      },
+      appointments: [],
+      diets: [],
+      exams: [],
+      exercises: [],
+      medications: [],
+    };
+  }
+
+  ngOnInit(): void {
     this.route.params.pipe(takeUntil(this.unsubscribe$)).subscribe((params) => {
       const id = params['id'];
 
