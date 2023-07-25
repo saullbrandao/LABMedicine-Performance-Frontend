@@ -612,7 +612,7 @@
       ],
       "exams": [
         {
-          "id": 201,
+          "id": 1,
           "name": "Blood Test",
           "date": "2023-07-30",
           "time": "08:00",
@@ -627,7 +627,7 @@
       ],
       "medications": [
         {
-          "id": 301,
+          "id": 1,
           "patientId": 1,
           "name": "Paracetamol",
           "date": "2023-07-25",
@@ -641,7 +641,7 @@
       ],
       "diets": [
         {
-          "id": 401,
+          "id": 1,
           "name": "Low Sodium Diet",
           "date": "2023-07-25",
           "time": "13:00",
@@ -654,7 +654,7 @@
       ],
       "exercises": [
         {
-          "id": 501,
+          "id": 1,
           "patientId": 1,
           "name": "Cardio Workout",
           "date": "2023-07-25",
@@ -692,7 +692,7 @@
       ],
       "exams": [
         {
-          "id": 202,
+          "id": 2,
           "name": "X-ray",
           "date": "2023-07-28",
           "time": "11:30",
@@ -708,7 +708,7 @@
       "medications": [],
       "diets": [
         {
-          "id": 402,
+          "id": 2,
           "name": "Gluten-Free Diet",
           "date": "2023-07-27",
           "time": "13:00",
@@ -721,7 +721,7 @@
       ],
       "exercises": [
         {
-          "id": 502,
+          "id": 2,
           "patientId": 2,
           "name": "Yoga",
           "date": "2023-07-27",
@@ -760,7 +760,7 @@
       "exams": [],
       "medications": [
         {
-          "id": 302,
+          "id": 2,
           "patientId": 3,
           "name": "Montelukast",
           "date": "2023-07-29",
@@ -775,7 +775,7 @@
       "diets": [],
       "exercises": [
         {
-          "id": 503,
+          "id": 3,
           "patientId": 3,
           "name": "Breathing Exercises",
           "date": "2023-07-29",
