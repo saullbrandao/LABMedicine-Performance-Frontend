@@ -40,7 +40,9 @@
       >
         <li
           class="card bg-white p-3"
-          *ngFor="let appointment of medicalRecord.appointments"
+          *ngFor="
+            let appointment of medicalRecord.appointments | orderByDateTime
+          "
         >
           <div class="d-flex justify-content-between">
             <h4 class="card-title d-flex gap-4">
@@ -95,7 +97,10 @@
         *ngIf="medicalRecord.exams.length > 0; else noExams"
         class="accordion-body d-flex flex-column gap-4"
       >
-        <li class="card bg-white p-3" *ngFor="let exam of medicalRecord.exams">
+        <li
+          class="card bg-white p-3"
+          *ngFor="let exam of medicalRecord.exams | orderByDateTime"
+        >
           <div class="d-flex justify-content-between">
             <h4 class="card-title d-flex gap-4">Nome: {{ exam.name }}</h4>
             <a
@@ -130,6 +135,7 @@
       </ul>
     </div>
   </div>
+
   <div class="accordion-item">
     <h3 class="accordion-header">
       <button
@@ -150,7 +156,7 @@
       >
         <li
           class="card bg-white p-3"
-          *ngFor="let medication of medicalRecord.medications"
+          *ngFor="let medication of medicalRecord.medications | orderByDateTime"
         >
           <div class="d-flex justify-content-between">
             <h4 class="card-title d-flex gap-4">Nome: {{ medication.name }}</h4>
@@ -183,6 +189,7 @@
       </ul>
     </div>
   </div>
+
   <div class="accordion-item">
     <h3 class="accordion-header">
       <button
@@ -201,7 +208,10 @@
         *ngIf="medicalRecord.diets.length > 0; else noDiets"
         class="accordion-body d-flex flex-column gap-4"
       >
-        <li class="card bg-white p-3" *ngFor="let diet of medicalRecord.diets">
+        <li
+          class="card bg-white p-3"
+          *ngFor="let diet of medicalRecord.diets | orderByDateTime"
+        >
           <div class="d-flex justify-content-between">
             <h4 class="card-title d-flex gap-4">Nome: {{ diet.name }}</h4>
             <a
@@ -228,6 +238,7 @@
       </ul>
     </div>
   </div>
+
   <div class="accordion-item">
     <h3 class="accordion-header">
       <button
@@ -248,7 +259,7 @@
       >
         <li
           class="card bg-white p-3"
-          *ngFor="let exercise of medicalRecord.exercises"
+          *ngFor="let exercise of medicalRecord.exercises | orderByDateTime"
         >
           <div class="d-flex justify-content-between">
             <h4 class="card-title d-flex gap-4">Nome: {{ exercise.name }}</h4>
