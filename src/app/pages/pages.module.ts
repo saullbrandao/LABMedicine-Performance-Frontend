@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { AgePipe } from '../pipes/age.pipe';
 import { MedicalRecordComponent } from './medical-record/medical-record.component';
 import { OrderByDateTimePipe } from '../pipes/order-by.pipe';
+import { MedicalRecordsComponent } from './medical-records/medical-records.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { OrderByDateTimePipe } from '../pipes/order-by.pipe';
     NotFoundComponent,
     HomeComponent,
     MedicalRecordComponent,
+    MedicalRecordsComponent,
   ],
   imports: [
     CommonModule,
