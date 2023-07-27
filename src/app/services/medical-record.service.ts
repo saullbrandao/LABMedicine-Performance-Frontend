@@ -11,6 +11,10 @@ export class MedicalRecordService {
 
   constructor(private http: HttpClient) {}
 
+  getAll() {
+    return this.http.get<MedicalRecord[]>(this.baseUrl);
+  }
+
   getById(patientId: number) {
     return this.http.get<MedicalRecord>(`${this.baseUrl}/${patientId}`);
   }

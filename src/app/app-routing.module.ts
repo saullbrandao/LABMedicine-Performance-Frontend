@@ -8,6 +8,7 @@ import { ExamsComponent } from './pages/exams/exams.component';
 import { DietsComponent } from './pages/diets/diets.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MedicalRecordComponent } from './pages/medical-record/medical-record.component';
+import { MedicalRecordsComponent } from './pages/medical-records/medical-records.component';
 
 const routes: Routes = [
   {
@@ -18,10 +19,14 @@ const routes: Routes = [
     // canActivate: [],
   },
   {
-    path: 'pacientes',
+    path: 'prontuarios',
     children: [
       {
-        path: ':id/prontuario',
+        path: '',
+        component: MedicalRecordsComponent,
+      },
+      {
+        path: ':id',
         component: MedicalRecordComponent,
       },
     ],

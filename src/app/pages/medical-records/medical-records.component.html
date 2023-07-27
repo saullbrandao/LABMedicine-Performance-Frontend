@@ -1,0 +1,60 @@
+<section class="p-4">
+  <h2>Filtrar prontuários</h2>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1"
+      ><i class="bi bi-search"></i
+    ></span>
+    <input
+      #searchMedicalRecordInput
+      id="search-patient"
+      type="text"
+      class="form-control"
+      placeholder="Busca por nome ou id do paciente"
+      aria-label="Search Patient"
+      aria-describedby="basic-addon1"
+      (keyup)="filterMedicalRecords(searchMedicalRecordInput.value)"
+    />
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="filterMedicalRecords(searchMedicalRecordInput.value)"
+    >
+      Buscar
+    </button>
+  </div>
+  <div class="table-responsive">
+    <table
+      class="table table-hover align-middle text-center"
+      style="border-collapse: separate; border-spacing: 0 2rem"
+    >
+      <thead>
+        <tr>
+          <th class="fs-5" scope="col">Registro</th>
+          <th class="fs-5" scope="col">Paciente</th>
+          <th class="fs-5" scope="col">Convênio</th>
+          <th class="fs-5" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredMedicalRecords.length > 0; else noMedicalRecords">
+        <tr
+          role="link"
+          class="rounded-3 shadow"
+          style="cursor: pointer"
+          *ngFor="let medicalRecord of filteredMedicalRecords"
+          routerLink="{{ medicalRecord.patient.id }}"
+        >
+          <td>{{ medicalRecord.patient.id.toString().padStart(10, "0") }}</td>
+          <td>{{ medicalRecord.patient.name }}</td>
+          <td>{{ medicalRecord.patient.healthInsurance || "-" }}</td>
+          <td class="text-end">
+            <i class="bi bi-chevron-right fs-2"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<ng-template #noMedicalRecords>
+  <td colspan="4">Nenhum prontuário encontrado.</td>
+</ng-template>
