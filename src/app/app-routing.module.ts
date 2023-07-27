@@ -9,17 +9,16 @@ import { DietsComponent } from './pages/diets/diets.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MedicalRecordComponent } from './pages/medical-record/medical-record.component';
 
-// TODO: maybe translate the paths to portuguese
 const routes: Routes = [
   {
-    path: 'register',
+    path: 'cadastrar',
     component: UserRegistrationComponent,
     title: 'Cadastro de Usuários',
     // TODO: add authorization
     // canActivate: [],
   },
   {
-    path: 'patients',
+    path: 'pacientes',
     children: [
       {
         path: ':id/prontuario',
@@ -28,7 +27,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'exams',
+    path: 'exames',
     children: [
       {
         path: '',
@@ -41,7 +40,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'diets',
+    path: 'dietas',
     children: [
       {
         path: '',
@@ -54,7 +53,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'exercises',
+    path: 'exercicios',
     children: [
       {
         path: '',
@@ -73,13 +72,13 @@ const routes: Routes = [
     title: 'Página Inicial',
   },
   {
-    path: 'not-found',
+    path: 'nao-encontrado',
     component: NotFoundComponent,
-    title: '404 | Not found',
+    title: '404 | Não Encontrado',
   },
   {
     path: '**',
-    redirectTo: 'not-found',
+    redirectTo: 'nao-encontrado',
   },
 ];
 
