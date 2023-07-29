@@ -9,6 +9,7 @@ import { DietsComponent } from './pages/diets/diets.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MedicalRecordComponent } from './pages/medical-record/medical-record.component';
 import { MedicalRecordsComponent } from './pages/medical-records/medical-records.component';
+import { PatientRegistrationComponent } from "./pages/patient-registration/patient-registration.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,19 @@ const routes: Routes = [
       {
         path: ':id',
         component: MedicalRecordComponent,
+      },
+    ],
+  },
+  {
+    path: 'pacientes',
+    children: [
+      {
+        path: '',
+        component: PatientRegistrationComponent,
+      },
+      {
+        path: ':id',
+        component: PatientRegistrationComponent,
       },
     ],
   },

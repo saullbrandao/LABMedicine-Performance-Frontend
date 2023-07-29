@@ -1,7 +1,7 @@
 <section class="p-4">
   <h2>{{ header }}</h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3">    
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3">
     <div>
       <label class="form-label fw-bold" for="name">Nome Completo*</label>
       <input
@@ -55,7 +55,7 @@
         mask="000.000.000-00"
       >
       <span class="invalid-feedback">
-        Digite um Cpf válido 
+        Digite um Cpf válido
       </span>
     </div>
 
@@ -69,17 +69,17 @@
         formControlName="rg"
       >
       <span class="invalid-feedback">
-        Digite um RG válido 
+        Digite um RG válido
       </span>
-    </div>    
-    
+    </div>
+
     <div>
-      <label class="form-label fw-bold" for="maritalStatus">Estádo civil*</label>
+      <label class="form-label fw-bold" for="maritalStatus">Estado civil*</label>
       <select
         class="form-select"
-        [class.is-invalid]="isInvalid('maritalStatus: ')"
+        [class.is-invalid]="isInvalid('maritalStatus')"
         id="maritalStatus"
-        formControlName="maritalStatus: "
+        formControlName="maritalStatus"
       >
       <option   value="S">Solteiro</option>
       <option   value="C">Casado</option>
@@ -98,7 +98,7 @@
         mask="(99) 9 9999-9999"
       >
       <span class="invalid-feedback">
-        Digite um telefone válido 
+        Digite um telefone válido
       </span>
     </div>
 
@@ -112,7 +112,7 @@
         formControlName="email"
       >
       <span class="invalid-feedback">
-        Digite um email válido 
+        Digite um email válido
       </span>
     </div>
 
@@ -126,7 +126,7 @@
         formControlName="nationality"
       >
       <span class="invalid-feedback">
-        Digite uma Naturalidade válida 
+        Digite uma Naturalidade válida
       </span>
     </div>
 
@@ -141,7 +141,7 @@
         mask="(99) 9 9999-9999"
       >
       <span class="invalid-feedback">
-        Digite um telefone válido 
+        Digite um telefone válido
       </span>
     </div>
 
@@ -196,7 +196,7 @@
         formControlName="insuranceValidity"
       >
       <span class="invalid-feedback">
-        Digite um data de validade do convênio válida 
+        Digite um data de validade do convênio válida
       </span>
     </div>
 

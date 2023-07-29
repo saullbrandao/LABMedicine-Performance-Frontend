@@ -20,8 +20,8 @@ export class PatientRegistrationComponent {
 
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private viaCepService: ViacepService 
+    private formBuilder: FormBuilder,
+    private viaCepService: ViacepService
   ){
     this.form = this.formBuilder.group(this.getFormData());
   }
@@ -47,9 +47,9 @@ export class PatientRegistrationComponent {
       ],
       birthDate: [
         patient?.birthDate || '',
-        [ Validators.required, 
+        [ Validators.required,
           this.dateValidator
-        ]  
+        ]
       ],
       cpf: [
         patient?.cpf || '',
@@ -161,7 +161,7 @@ export class PatientRegistrationComponent {
         patient?.address.referencePoint   || ''
       ],
       systemStatus  :  [
-        patient?.systemStatus  || '',
+        patient?.status  || '',
         [
           Validators.required
         ]
@@ -173,7 +173,7 @@ export class PatientRegistrationComponent {
     return this.form.get(input)?.invalid && this.form.get(input)?.touched;
   }
 
-  
+
   genderValidator(control: FormControl): ValidationErrors | null {
     const value = control.value?.toLowerCase();
 
@@ -204,21 +204,21 @@ export class PatientRegistrationComponent {
   delete(){
 
   }
- 
+
   dateValidator (control: FormControl): ValidationErrors | null {
       if (!control.value) {
         return null; // Se o campo estiver vazio, a validação será considerada bem-sucedida.
       }
-  
+
       const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
-  
+
       if (!datePattern.test(control.value)) {
         return { invalidDateFormat: true };
       }
-  
+
       const [day, month, year] = control.value.split('/');
       const dateObject = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-  
+
       if (
         dateObject.getFullYear() !== parseInt(year) ||
         dateObject.getMonth() + 1 !== parseInt(month) ||
@@ -226,10 +226,10 @@ export class PatientRegistrationComponent {
       ) {
         return { invalidDate: true };
       }
-  
+
       return null; // Data válida, retorno null indicando sucesso na validação.
     };
-  
+
     handleCepBlur(){
         const cep = this.form.get('cep')!.value;
         if(cep.length === 8){
@@ -247,7 +247,7 @@ export class PatientRegistrationComponent {
               console.log('erro');
             }
              )
-            
+
 
           }
         }
