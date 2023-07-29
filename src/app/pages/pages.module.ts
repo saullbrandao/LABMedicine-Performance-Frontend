@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { PatientRegistrationComponent } from './patient-registration/patient-registration.component';
 import { ExamsComponent } from './exams/exams.component';
 import { ComponentsModule } from '../components/components.module';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
@@ -18,6 +19,7 @@ import { MedicalRecordsComponent } from './medical-records/medical-records.compo
 @NgModule({
   declarations: [
     UserRegistrationComponent,
+    PatientRegistrationComponent,
     ExamsComponent,
     DietsComponent,
     ExerciseComponent,
@@ -36,6 +38,6 @@ import { MedicalRecordsComponent } from './medical-records/medical-records.compo
     AgePipe,
     OrderByDateTimePipe,
   ],
-  providers: [provideNgxMask(), DatePipe],
+  providers: [provideNgxMask(), DatePipe]
 })
 export class PagesModule {}

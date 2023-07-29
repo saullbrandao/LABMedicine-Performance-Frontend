@@ -1,0 +1,339 @@
+<section class="p-4">
+  <h2>{{ header }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3">    
+    <div>
+      <label class="form-label fw-bold" for="name">Nome Completo*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('name')"
+        type="text"
+        id="name"
+        formControlName="name"
+      >
+      <span class="invalid-feedback">
+        Digite um nome completo válido (Mínimo 8 e máximo 64 caracteres)
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="gender">Genêro*</label>
+      <select
+        class="form-select"
+        [class.is-invalid]="isInvalid('gender')"
+        id="gender"
+        formControlName="gender"
+      >
+        <option value="m"> Masculino</option>
+        <option value="f"> Feminino</option>
+      </select>
+      <span class="invalid-feedback">Selecione um gênero</span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="birthDate">Data de nascimento*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('birthDate')"
+        type="date"
+        id="birthDate "
+        formControlName="birthDate"
+      >
+      <span class="invalid-feedback">
+        Insira uma data válida
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="cpf">Cpf*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('cpf')"
+        type="text"
+        id="cpf"
+        formControlName="cpf"
+        mask="000.000.000-00"
+      >
+      <span class="invalid-feedback">
+        Digite um Cpf válido 
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="rg">Rg*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('rg')"
+        type="text"
+        id="rg"
+        formControlName="rg"
+      >
+      <span class="invalid-feedback">
+        Digite um RG válido 
+      </span>
+    </div>    
+    
+    <div>
+      <label class="form-label fw-bold" for="maritalStatus">Estádo civil*</label>
+      <select
+        class="form-select"
+        [class.is-invalid]="isInvalid('maritalStatus: ')"
+        id="maritalStatus"
+        formControlName="maritalStatus: "
+      >
+      <option   value="S">Solteiro</option>
+      <option   value="C">Casado</option>
+      </select>
+      <span class="invalid-feedback">Selecione um estado civil</span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="phone">Telefone*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('phone')"
+        type="text"
+        id="phone"
+        formControlName="phone"
+        mask="(99) 9 9999-9999"
+      >
+      <span class="invalid-feedback">
+        Digite um telefone válido 
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="email">email*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('email')"
+        type="email"
+        id="email"
+        formControlName="email"
+      >
+      <span class="invalid-feedback">
+        Digite um email válido 
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="nationality">Naturalidade*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('nationality')"
+        type="text"
+        id="nationality"
+        formControlName="nationality"
+      >
+      <span class="invalid-feedback">
+        Digite uma Naturalidade válida 
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="emergencyContact">Contado de Emergência*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('emergencyContact')"
+        type="text"
+        id="emergencyContact"
+        formControlName="emergencyContact"
+        mask="(99) 9 9999-9999"
+      >
+      <span class="invalid-feedback">
+        Digite um telefone válido 
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="allergyList">Lista de alergias</label>
+      <input
+        class="form-control"
+        type="text"
+        id="allergyList"
+        formControlName="allergyList"
+      >
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="specificCareList">Lista de Cuidados Específicos</label>
+      <input
+        class="form-control"
+        type="text"
+        id="specificCareList"
+        formControlName="specificCareList"
+      >
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="healthInsurance">Convênio</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('healthInsurance')"
+        type="text"
+        id="healthInsurance"
+        formControlName="healthInsurance"
+      >
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="insuranceNumber">Nº do Convênio</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('insuranceNumber')"
+        type="text"
+        id="insuranceNumber"
+        formControlName="insuranceNumber"
+      >
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="insuranceValidity">Data de validade do convênio</label>
+      <input
+        class="form-control"
+        type="text"
+        id="insuranceValidity"
+        formControlName="insuranceValidity"
+      >
+      <span class="invalid-feedback">
+        Digite um data de validade do convênio válida 
+      </span>
+    </div>
+
+    <h2>Dados Endereço</h2>
+    <hr/>
+    <div>
+      <label class="form-label fw-bold" for="cep">CEP*</label>
+      <input
+        class="form-control"
+        type="text"
+        id="cep"
+        formControlName="cep"
+        (onblur)="handleCepBlur()"
+      >
+      <span class="invalid-feedback">
+        Digite um cep válido
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="city">Cidade*</label>
+      <input
+        class="form-control"
+        type="text"
+        id="city"
+        formControlName="city"
+      >
+      <span class="invalid-feedback">
+        Digite um cidade válida
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="state">Estado*</label>
+      <input
+        class="form-control"
+        type="text"
+        id="state"
+        formControlName="state"
+      >
+      <span class="invalid-feedback">
+        Digite um Estado válido
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="street">Rua*</label>
+      <input
+        class="form-control"
+        type="text"
+        id="street"
+        formControlName="street"
+      >
+      <span class="invalid-feedback">
+        Digite uma ruma válida
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="number">Número*</label>
+      <input
+        class="form-control"
+        type="text"
+        id="number"
+        formControlName="number"
+      >
+      <span class="invalid-feedback">
+        Digite um número válido
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="complement">Complemento</label>
+      <input
+        class="form-control"
+        type="text"
+        id="cep"
+        formControlName="complement"
+      >
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="neighborhood">Bairro*</label>
+      <input
+        class="form-control"
+        type="text"
+        id="neighborhood"
+        formControlName="neighborhood"
+      >
+      <span class="invalid-feedback">
+        Digite um bairro válido
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="CEP">Ponto de Referência</label>
+      <input
+        class="form-control"
+        type="text"
+        id="referencePoint"
+        formControlName="referencePoint"
+      >
+    </div>
+    <hr/>
+
+    <div class="form-check form-switch form-check-reverse">
+      <label class="form-check-label fw-bold" for="systemStatus">Status no sistema </label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="systemStatus"
+        formControlName="systemStatus"
+      >
+    </div>
+
+
+
+
+
+    <div class="d-flex justify-content-end mt-3 gap-3">
+      <div>
+        <button
+          class="btn btn-danger px-5 text-light rounded-0"
+          data-bs-toggle="modal" data-bs-target="#confirmModal"
+          (click)="$event.preventDefault()"
+          [class.d-none]="!editMode"
+        >
+          Excluir
+        </button>
+      </div>
+      <div>
+        <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<app-confirm-modal [message]="confirmMessage" (confirmed)="delete()" />
