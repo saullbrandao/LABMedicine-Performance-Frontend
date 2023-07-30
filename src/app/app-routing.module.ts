@@ -12,6 +12,7 @@ import { MedicalRecordsComponent } from './pages/medical-records/medical-records
 import { PatientRegistrationComponent } from './pages/patient-registration/patient-registration.component';
 import { MedicationsComponent } from './pages/medication/medications.component';
 import { LoginComponent } from './pages/login/login.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -23,11 +24,11 @@ const routes: Routes = [
     path: 'cadastrar',
     component: UserRegistrationComponent,
     title: 'Cadastro de Usuários',
-    // TODO: add authorization
-    // canActivate: [],
+    canActivate: [authGuard],
   },
   {
     path: 'prontuarios',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -41,6 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'pacientes',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -54,6 +56,7 @@ const routes: Routes = [
   },
   {
     path: 'medicamentos',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -67,6 +70,7 @@ const routes: Routes = [
   },
   {
     path: 'exames',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -80,6 +84,7 @@ const routes: Routes = [
   },
   {
     path: 'dietas',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -93,6 +98,7 @@ const routes: Routes = [
   },
   {
     path: 'exercicios',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -109,11 +115,13 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     title: 'Página Inicial',
+    canActivate: [authGuard],
   },
   {
     path: 'nao-encontrado',
     component: NotFoundComponent,
     title: '404 | Não Encontrado',
+    canActivate: [authGuard],
   },
   {
     path: '**',
