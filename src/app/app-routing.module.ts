@@ -39,6 +39,7 @@ const routes: Routes = [
   {
     path: 'prontuarios',
     canActivate: [authGuard],
+    title: 'Prontuários',
     children: [
       {
         path: '',
@@ -68,6 +69,7 @@ const routes: Routes = [
   {
     path: 'medicamentos',
     canActivate: [authGuard],
+    title: 'Medicamentos',
     children: [
       {
         path: '',
@@ -81,6 +83,7 @@ const routes: Routes = [
   },
   {
     path: 'consultas',
+    title: 'Consultas',
     canActivate: [authGuard, doctorGuard],
     children: [
       {
@@ -95,6 +98,7 @@ const routes: Routes = [
   },
   {
     path: 'exames',
+    title: 'Exames',
     canActivate: [authGuard, doctorGuard],
     children: [
       {
@@ -109,6 +113,7 @@ const routes: Routes = [
   },
   {
     path: 'dietas',
+    title: 'Dietas',
     canActivate: [authGuard],
     children: [
       {
@@ -123,6 +128,7 @@ const routes: Routes = [
   },
   {
     path: 'exercicios',
+    title: 'Exercícios',
     canActivate: [authGuard],
     children: [
       {

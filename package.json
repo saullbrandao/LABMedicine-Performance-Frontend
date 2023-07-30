@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "dev": "concurrently \"json-server -d 500 --watch json-server/db.json\" \"ng serve\"",
+    "dev": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
