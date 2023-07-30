@@ -5,5 +5,5 @@ export type User = {
   phone: string;
   email: string;
   password: string;
-  type: 'admin' | 'doctor' | 'nurse';
+  type: 'ADMIN' | 'MEDICO' | 'ENFERMEIRO';
 };

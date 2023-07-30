@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CPF_REGEX, PHONE_REGEX } from 'src/app/utils/constants';
-import { UserRegistrationService } from './user-registration.service';
 import { NotificationService } from '../../services/notification/notification.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -14,11 +13,11 @@ export class UserRegistrationComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userRegistrationService: UserRegistrationService,
+    private userService: UserService,
     private notificationService: NotificationService
   ) {
     this.form = this.formBuilder.group({
-      fullName: [
+      name: [
         '',
         [
           Validators.required,
@@ -27,8 +26,8 @@ export class UserRegistrationComponent {
         ],
       ],
       gender: ['', [Validators.required]],
-      cpf: ['', [Validators.required, Validators.pattern(CPF_REGEX)]],
-      phone: ['', [Validators.required, Validators.pattern(PHONE_REGEX)]],
+      cpf: ['', [Validators.required, Validators.maxLength(11)]],
+      phone: ['', [Validators.required, Validators.maxLength(11)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       type: ['', [Validators.required]],
@@ -41,21 +40,10 @@ export class UserRegistrationComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      this.userRegistrationService
-        .register(this.form.value)
-        .subscribe((res) => {
-          this.notificationService.success(res.message);
-
-          switch (res.status) {
-            case 201:
-              this.notificationService.success(res.message);
-              break;
-            default:
-              this.notificationService.error(res.message);
-          }
-        });
-
-      this.form.reset();
+      this.userService.create(this.form.value).subscribe((res) => {
+        this.notificationService.success('Usuário cadastrado com sucesso');
+        this.form.reset();
+      });
     } else {
       Object.keys(this.form.controls).forEach((field) => {
         const control = this.form.get(field);

@@ -11,6 +11,10 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  create(user: User) {
+    return this.http.post(this.baseUrl, user);
+  }
+
   getAll() {
     return this.http.get<User[]>(this.baseUrl);
   }

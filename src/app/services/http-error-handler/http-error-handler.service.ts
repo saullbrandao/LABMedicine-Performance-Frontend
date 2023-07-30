@@ -27,6 +27,9 @@ export class HttpErrorHandlerService {
       case 404:
         this.handle404Error();
         break;
+      case 409:
+        this.handleConflict(error);
+        break;
       default:
         this.handleUnknownError();
         break;
@@ -46,5 +49,12 @@ export class HttpErrorHandlerService {
       'Ocorreu um erro. Tente novamente mais tarde.',
       'unkown-error'
     );
+  }
+
+  private handleConflict(error: HttpErrorResponse) {
+    error.error.forEach((err: any) => {
+      const message = `${err.field} - ${err.message}`;
+      this.notificationService.error(message);
+    });
   }
 }
