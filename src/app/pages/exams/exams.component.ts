@@ -127,7 +127,7 @@ export class ExamsComponent {
   }
 
   goToRegistration(){
-    this.router.navigate(['examregistration']);
+    this.router.navigate(['exames']);
   }
 
   formReset(){

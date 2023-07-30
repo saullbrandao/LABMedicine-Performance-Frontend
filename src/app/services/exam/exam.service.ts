@@ -31,7 +31,6 @@ export class ExamService {
   }
 
   save(exam: Exam) {
-    console.log(exam);
     if(exam.id) {
       this.http.put(`${this.baseUrl}/${exam.id}`, exam)
         .pipe(catchError(this.handleError))
