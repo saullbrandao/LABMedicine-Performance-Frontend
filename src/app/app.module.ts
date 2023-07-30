@@ -11,6 +11,8 @@ import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { AddTokenInterceptor } from './interceptors/add-token.interceptor';
+import { PageTitle } from './utils/page-title';
+import { TitleStrategy } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent, GenderValidatorDirective],
@@ -24,6 +26,7 @@ import { AddTokenInterceptor } from './interceptors/add-token.interceptor';
     NgxSpinnerModule.forRoot({ type: 'ball-clip-rotate' }),
   ],
   providers: [
+    { provide: TitleStrategy, useClass: PageTitle },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AddTokenInterceptor,

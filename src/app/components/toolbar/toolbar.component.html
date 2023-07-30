@@ -1,5 +1,7 @@
 <div
-  class="sticky-top d-flex bg-dark text-white-50 justify-content-between align-items-center px-4 py-1">
+  class="sticky-top d-flex bg-primary text-light justify-content-between align-items-center px-4 py-1"
+  *ngIf="shouldDisplay()"
+>
   <span class="fs-3 text-nowrap fw-bold">{{ title }}</span>
   <div class="d-flex gap-2 align-items-center">
     <span class="d-none d-md-block">{{ username }}</span>

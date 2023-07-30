@@ -9,6 +9,7 @@ type Token = {
 };
 
 type JwtPayload = {
+  name: string;
   exp: number;
   iat: number;
   role: string;
@@ -60,6 +61,11 @@ export class AuthService {
 
   decodeToken(token: string) {
     return jwt_decode<JwtPayload>(token);
+  }
+
+  getUserName() {
+    const token = this.getUserToken();
+    return this.decodeToken(token).name;
   }
 
   getUserType() {
