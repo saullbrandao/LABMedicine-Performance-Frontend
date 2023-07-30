@@ -3,13 +3,13 @@
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3">
     <div>
-      <label class="form-label fw-bold" for="fullName">Nome Completo*</label>
+      <label class="form-label fw-bold" for="name">Nome Completo*</label>
       <input
         class="form-control"
-        [class.is-invalid]="isInvalid('fullName')"
+        [class.is-invalid]="isInvalid('name')"
         type="text"
-        id="fullName"
-        formControlName="fullName"
+        id="name"
+        formControlName="name"
       />
       <span class="invalid-feedback"
         >Digite um nome válido(Mínimo 8 e máximo 64 caracteres)</span
@@ -23,7 +23,7 @@
         id="cpf"
         formControlName="cpf"
         mask="000.000.000-00"
-        [dropSpecialCharacters]="false"
+        [dropSpecialCharacters]="true"
         placeholder="000.000.000-00"
         [class.is-invalid]="isInvalid('cpf')"
       />
@@ -38,9 +38,9 @@
         formControlName="gender"
         [class.is-invalid]="isInvalid('gender')"
       >
-        <option value="masculino">Masculino</option>
-        <option value="feminino">Feminino</option>
-        <option value="other">Outro</option>
+        <option value="MASCULINO">Masculino</option>
+        <option value="FEMININO">Feminino</option>
+        <option value="OUTRO">Outro</option>
       </select>
       <span class="invalid-feedback">Selecione uma opção</span>
 
@@ -52,7 +52,7 @@
           id="phone"
           formControlName="phone"
           mask="(00) 0 0000-0000"
-          [dropSpecialCharacters]="false"
+          [dropSpecialCharacters]="true"
           placeholder="(00) 0 0000-0000"
           [class.is-invalid]="isInvalid('phone')"
         />
@@ -91,9 +91,9 @@
           formControlName="type"
           [class.is-invalid]="isInvalid('type')"
         >
-          <option value="admin">Administrador</option>
-          <option value="doctor">Médico</option>
-          <option value="nurse">Enfermeiro</option>
+          <option value="ADMIN">Administrador</option>
+          <option value="MEDICO">Médico</option>
+          <option value="ENFERMEIRO">Enfermeiro</option>
         </select>
         <span class="invalid-feedback">Selecione uma opção</span>
       </div>
