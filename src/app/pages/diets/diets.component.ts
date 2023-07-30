@@ -126,7 +126,7 @@ export class DietsComponent {
   }
 
   goToRegistration(){
-    this.router.navigate(['diets']);
+    this.router.navigate(['dietas']);
   }
 
   formReset(){
