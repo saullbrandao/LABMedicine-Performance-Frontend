@@ -46,6 +46,11 @@ export class AuthService {
       });
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
   isLoggedIn() {
     const localStorageToken = this.getUserToken();
     if (!localStorageToken) {
