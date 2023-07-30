@@ -19,6 +19,7 @@ import { MedicationsComponent } from './medication/medications.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordModalComponent } from './login/reset-password-modal/reset-password-modal.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
+import { LogsComponent } from './logs/logs.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AppointmentsComponent } from './appointments/appointments.component';
     LoginComponent,
     ResetPasswordModalComponent,
     AppointmentsComponent,
+    LogsComponent,
   ],
   imports: [
     CommonModule,
