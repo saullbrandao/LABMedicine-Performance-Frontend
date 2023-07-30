@@ -23,6 +23,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     title: 'Página de login',
+    canActivate: [authGuard],
   },
   {
     path: 'cadastrar',
