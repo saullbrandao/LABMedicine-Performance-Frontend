@@ -4,6 +4,7 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { SelectPatientModalComponent } from './search-patient-modal/select-patient-modal.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     ToolbarComponent,
     MenuLateralComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 export class ComponentsModule {}
