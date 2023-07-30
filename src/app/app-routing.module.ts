@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MedicalRecordComponent } from './pages/medical-record/medical-record.component';
 import { MedicalRecordsComponent } from './pages/medical-records/medical-records.component';
 import { PatientRegistrationComponent } from "./pages/patient-registration/patient-registration.component";
+import { MedicationsComponent } from "./pages/medication/medications.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,19 @@ const routes: Routes = [
       {
         path: ':id',
         component: PatientRegistrationComponent,
+      },
+    ],
+  },
+  {
+    path: 'medicamentos',
+    children: [
+      {
+        path: '',
+        component: MedicationsComponent,
+      },
+      {
+        path: ':id',
+        component: MedicationsComponent,
       },
     ],
   },

@@ -1,0 +1,176 @@
+<section class="p-4">
+  <h2>{{ header }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3 d-flex flex-column gap-3">
+    <div *ngIf="editMode" class="form-check form-switch form-check-reverse">
+      <label class="form-check-label fw-bold" for="status">Medicamento ativo</label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="status"
+        formControlName="status"
+      >
+    </div>
+
+    <button
+      class="btn btn-primary px-5 text-light rounded-0 w-100"
+      data-bs-toggle="modal" data-bs-target="#selectPatientModal"
+      (click)="$event.preventDefault()"
+      [class.d-none]="editMode"
+    >
+      Selecionar Paciente
+    </button>
+
+    <div>
+      <label class="form-label fw-bold" for="patient">Paciente*</label>
+      <input
+        #patientInput
+        class="form-control"
+        [class.is-invalid]="isInvalid('patientId')"
+        type="text"
+        id="patient"
+        readonly
+        [disabled]="disablePatientInput"
+      >
+      <span class="invalid-feedback">
+        Selecione um paciente
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="name">Nome do Medicamento*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('name')"
+        type="text"
+        id="name"
+        formControlName="name"
+      >
+      <span class="invalid-feedback">
+        Digite um nome válido (Mínimo 5 e máximo 100 caracteres)
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="date">Data*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('date')"
+        type="date"
+        id="date"
+        formControlName="date"
+      >
+      <span class="invalid-feedback">
+        Insira uma data válida
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="time">Hora*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('time')"
+        type="time"
+        id="time"
+        formControlName="time"
+      >
+      <span class="invalid-feedback">
+        Insira um horário válido
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="type">Tipo*</label>
+      <select
+        class="form-select"
+        aria-label="Select para tipo do medicamento"
+        id="type"
+        formControlName="type"
+        [class.is-invalid]="isInvalid('type')"
+      >
+        <option selected disabled>Selecione</option>
+        <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+      </select>
+
+      <span class="invalid-feedback">
+        Selecione um tipo
+      </span>
+    </div>
+
+    <div class="container mw-100">
+      <div class="row">
+        <div class="col-6 ps-0">
+          <label class="form-label fw-bold" for="quantity">Quantidade*</label>
+          <input
+            class="form-control"
+            [class.is-invalid]="isInvalid('quantity')"
+            type="number"
+            min="0"
+            id="quantity"
+            formControlName="quantity"
+          >
+          <span class="invalid-feedback">
+        Insira uma quantidade
+      </span>
+        </div>
+
+        <div class="col-6 pe-0">
+          <label class="form-label fw-bold" for="unit">Unidade*</label>
+          <select
+            class="form-select"
+            aria-label="Select para unidade do medicamento"
+            id="unit"
+            formControlName="unit"
+            [class.is-invalid]="isInvalid('unit')"
+          >
+            <option selected disabled>Selecione</option>
+            <option *ngFor="let unit of unitOptions" [value]="unit">{{ getUnit(unit) }}</option>
+          </select>
+
+          <span class="invalid-feedback">
+        Selecione uma unidade
+      </span>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div>
+      <label class="form-label fw-bold" for="observations">Observações*</label>
+      <textarea
+        class="form-control"
+        [class.is-invalid]="isInvalid('observations')"
+        id="observations"
+        rows="7"
+        maxlength="1024"
+        formControlName="observations"
+      ></textarea>
+      <span class="invalid-feedback">
+        Digite uma observação válida (Mínimo 10 e máximo 1000 caracteres)
+      </span>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3 gap-3">
+      <div>
+        <button
+          class="btn btn-danger px-5 text-light rounded-0"
+          data-bs-toggle="modal" data-bs-target="#confirmModal"
+          (click)="$event.preventDefault()"
+          [class.d-none]="!editMode"
+        >
+          Excluir
+        </button>
+      </div>
+      <div>
+        <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<app-search-patient-modal (patientSelected)="setPatient($event)" />
+<app-confirm-modal [message]="confirmMessage" (confirmed)="delete()" />
+

@@ -15,6 +15,7 @@ import { AgePipe } from '../pipes/age.pipe';
 import { MedicalRecordComponent } from './medical-record/medical-record.component';
 import { OrderByDateTimePipe } from '../pipes/order-by.pipe';
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
+import { MedicationsComponent } from './medication/medications.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MedicalRecordsComponent } from './medical-records/medical-records.compo
     HomeComponent,
     MedicalRecordComponent,
     MedicalRecordsComponent,
+    MedicationsComponent,
   ],
   imports: [
     CommonModule,
