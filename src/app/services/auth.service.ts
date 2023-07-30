@@ -2,9 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { API_URL } from '../utils/constants';
+import jwt_decode from 'jwt-decode';
 
 type Token = {
   token: string;
+};
+
+type JwtPayload = {
+  exp: number;
+  iat: number;
+  role: string;
+  sub: string;
 };
 
 type ResetPassword = {
@@ -16,6 +24,8 @@ type ResetPassword = {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   readonly BASE_URL = `${API_URL}/usuarios`;
+  userType: string = '';
+
   constructor(private http: HttpClient, private router: Router) {}
 
   getUserToken() {
@@ -46,5 +56,28 @@ export class AuthService {
 
   resetPassword(resetPassword: ResetPassword) {
     return this.http.put(`${this.BASE_URL}/resetarsenha`, resetPassword);
+  }
+
+  decodeToken(token: string) {
+    return jwt_decode<JwtPayload>(token);
+  }
+
+  getUserType() {
+    const token = this.getUserToken();
+    return this.decodeToken(token).role;
+  }
+
+  isAdmin() {
+    const token = this.getUserToken();
+    return this.decodeToken(token).role === 'ADMIN';
+  }
+
+  isDoctor() {
+    const token = this.getUserToken();
+    return this.decodeToken(token).role === 'MEDICO';
+  }
+  isNurse() {
+    const token = this.getUserToken();
+    return this.decodeToken(token).role === 'ENFERMEIRO';
   }
 }

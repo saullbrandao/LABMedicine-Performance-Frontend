@@ -13,6 +13,14 @@ import { PatientRegistrationComponent } from './pages/patient-registration/patie
 import { MedicationsComponent } from './pages/medication/medications.component';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
+import { doctorGuard } from './guards/doctor.guard';
+
+// TODO: add authorization to appointments
+// canActivate: [authGuard, doctorGuard]
+
+// TODO: add authorization to logs page
+// canActivate: [authGuard, adminGuard]
 
 const routes: Routes = [
   {
@@ -24,7 +32,7 @@ const routes: Routes = [
     path: 'cadastrar',
     component: UserRegistrationComponent,
     title: 'Cadastro de Usuários',
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'prontuarios',
@@ -70,7 +78,7 @@ const routes: Routes = [
   },
   {
     path: 'exames',
-    canActivate: [authGuard],
+    canActivate: [authGuard, doctorGuard],
     children: [
       {
         path: '',
