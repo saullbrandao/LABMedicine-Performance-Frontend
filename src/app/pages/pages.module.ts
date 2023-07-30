@@ -18,6 +18,7 @@ import { MedicalRecordsComponent } from './medical-records/medical-records.compo
 import { MedicationsComponent } from './medication/medications.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordModalComponent } from './login/reset-password-modal/reset-password-modal.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ResetPasswordModalComponent } from './login/reset-password-modal/reset-
     MedicationsComponent,
     LoginComponent,
     ResetPasswordModalComponent,
+    AppointmentsComponent,
   ],
   imports: [
     CommonModule,

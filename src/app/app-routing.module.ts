@@ -15,6 +15,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { adminGuard } from './guards/admin.guard';
 import { doctorGuard } from './guards/doctor.guard';
+import { AppointmentsComponent } from "./pages/appointments/appointments.component";
 
 // TODO: add authorization to appointments
 // canActivate: [authGuard, doctorGuard]
@@ -74,6 +75,20 @@ const routes: Routes = [
       {
         path: ':id',
         component: MedicationsComponent,
+      },
+    ],
+  },
+  {
+    path: 'consultas',
+    canActivate: [authGuard, doctorGuard],
+    children: [
+      {
+        path: '',
+        component: AppointmentsComponent,
+      },
+      {
+        path: ':id',
+        component: AppointmentsComponent,
       },
     ],
   },
