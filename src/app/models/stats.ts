@@ -1,8 +1,8 @@
 export type Stats = {
-  patients: number;
-  appointments: number;
-  exams: number;
-  medications: number;
-  exercises: number;
-  diets: number;
+  patient: number;
+  appointment: number;
+  exam: number;
+  medication: number;
+  exercise: number;
+  diet: number;
 };

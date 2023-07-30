@@ -65,12 +65,14 @@ export class HomeComponent implements OnInit {
     });
 
     this.statsService.getStats().subscribe((data) => {
-      this.systemStats.pacientes.quantity = data.patients;
-      this.systemStats.consultas.quantity = data.appointments;
-      this.systemStats.exames.quantity = data.exams;
-      this.systemStats.medicamentos.quantity = data.medications;
-      this.systemStats.exercicios.quantity = data.exercises;
-      this.systemStats.dietas.quantity = data.diets;
+      console.log(data);
+
+      this.systemStats.pacientes.quantity = data.patient;
+      this.systemStats.consultas.quantity = data.appointment;
+      this.systemStats.exames.quantity = data.exam;
+      this.systemStats.medicamentos.quantity = data.medication;
+      this.systemStats.exercicios.quantity = data.exercise;
+      this.systemStats.dietas.quantity = data.diet;
     });
   }
 
