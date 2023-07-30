@@ -74,8 +74,7 @@
     </div>
   </section>
 
-  <!-- TODO: display only if the user is admin -->
-  <section>
+  <section *ngIf="isAdmin()">
     <h2 class="text-center text-md-start">Informações Rápidas de Usuários</h2>
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"
