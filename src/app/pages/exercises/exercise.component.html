@@ -1,0 +1,154 @@
+<section class="p-4">
+  <h2>Preencha os campos para cadastrar novo exercício</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3 d-flex flex-column gap-3">
+    <div *ngIf="isEditing" class="form-check form-switch form-check-reverse">
+      <label class="form-check-label fw-bold" for="status">Exame ativo</label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="status"
+        formControlName="status"
+      />
+    </div>
+    <button
+      *ngIf="!isEditing"
+      class="btn btn-primary px-5 text-light rounded-0 w-100"
+      data-bs-toggle="modal"
+      data-bs-target="#selectPatientModal"
+      (click)="$event.preventDefault()"
+    >
+      Selecionar Paciente
+    </button>
+
+    <div>
+      <label class="form-label fw-bold" for="patient">Paciente*</label>
+      <input
+        #patientInput
+        class="form-control"
+        [class.is-invalid]="isInvalid('patientId')"
+        type="text"
+        id="patient"
+        readonly
+        [disabled]="disablePatientInput"
+      />
+      <span class="invalid-feedback"> Selecione um paciente </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="name">Nome do Exercício*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('name')"
+        type="text"
+        id="name"
+        formControlName="name"
+      />
+      <span class="invalid-feedback"
+        >Digite um nome válido(Mínimo 5 e máximo 100 caracteres)</span
+      >
+    </div>
+    <div>
+      <label class="form-label fw-bold" for="date">Data*</label>
+      <input
+        class="form-control"
+        type="text"
+        id="date"
+        formControlName="date"
+        [class.is-invalid]="isInvalid('date')"
+        mask="d0/M0/0000"
+        [dropSpecialCharacters]="false"
+        [leadZeroDateTime]="true"
+      />
+      <span class="invalid-feedback">Insira uma data válida</span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="time">Horário*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('time')"
+        type="text"
+        id="time"
+        formControlName="time"
+        mask="Hh:m0"
+        [dropSpecialCharacters]="false"
+        [leadZeroDateTime]="true"
+      />
+      <span class="invalid-feedback">Insira um horário válido</span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="type">Tipo*</label>
+      <select
+        class="form-select"
+        id="type"
+        formControlName="type"
+        [class.is-invalid]="isInvalid('type')"
+      >
+        <option *ngFor="let type of getExerciseTypes()" [value]="type">
+          {{ type }}
+        </option>
+      </select>
+      <span class="invalid-feedback">Insira um telefone válido</span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="amountPerWeek"
+        >Quantidade por Semana*</label
+      >
+      <input
+        class="form-control"
+        type="number"
+        id="amountPerWeek"
+        min="1"
+        max="7"
+        formControlName="amountPerWeek"
+        [class.is-invalid]="isInvalid('amountPerWeek')"
+      />
+      <span class="invalid-feedback"
+        >Insira uma quantidade válida(Mínimo 1 e Máximo 7)</span
+      >
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="description">Descrição*</label>
+
+      <textarea
+        class="form-control"
+        id="description"
+        rows="7"
+        maxlength="1024"
+        formControlName="description"
+        [class.is-invalid]="isInvalid('description')"
+      >
+      </textarea>
+      <span class="invalid-feedback"
+        >Insira uma descrição válida(Mínimo 10 caracteres e Máximo 1000
+        caracteres)</span
+      >
+    </div>
+
+    <div class="d-flex gap-2 justify-content-end mt-3">
+      <button
+        *ngIf="isEditing"
+        class="btn btn-danger px-5 text-light rounded-0"
+        data-bs-toggle="modal"
+        data-bs-target="#confirmModal"
+        (click)="$event.preventDefault()"
+      >
+        Excluir
+      </button>
+
+      <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+        Salvar
+      </button>
+    </div>
+  </form>
+</section>
+
+<app-search-patient-modal (patientSelected)="setPatient($event)" />
+<app-confirm-modal
+  [message]="confirmMessage"
+  (confirmed)="onDelete()"
+></app-confirm-modal>

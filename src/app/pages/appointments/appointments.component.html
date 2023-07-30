@@ -1,0 +1,141 @@
+<section class="p-4">
+  <h2>{{ header }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3 d-flex flex-column gap-3">
+    <div *ngIf="editMode" class="form-check form-switch form-check-reverse">
+      <label class="form-check-label fw-bold" for="status">Consulta ativa</label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="status"
+        formControlName="status"
+      >
+    </div>
+
+    <button
+      class="btn btn-primary px-5 text-light rounded-0 w-100"
+      data-bs-toggle="modal" data-bs-target="#selectPatientModal"
+      (click)="$event.preventDefault()"
+      *ngIf="!editMode"
+    >
+      Selecionar Paciente
+    </button>
+
+    <div>
+      <label class="form-label fw-bold" for="patient">Paciente*</label>
+      <input
+        #patientInput
+        class="form-control"
+        [class.is-invalid]="isInvalid('patientId')"
+        type="text"
+        id="patient"
+        readonly
+        [disabled]="disablePatientInput"
+      >
+      <span class="invalid-feedback">
+        Selecione um paciente
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="reason">Motivo*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('reason')"
+        type="text"
+        id="reason"
+        formControlName="reason"
+      >
+      <span class="invalid-feedback">
+        Digite um motivo válido (Mínimo 8 e máximo 64 caracteres)
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="date">Data da Consulta*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('date')"
+        type="date"
+        id="date"
+        formControlName="date"
+      >
+      <span class="invalid-feedback">
+        Insira uma data válida
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="time">Hora da Consulta*</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="isInvalid('time')"
+        type="time"
+        id="time"
+        formControlName="time"
+      >
+      <span class="invalid-feedback">
+        Insira um horário válido
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="description">Descrição*</label>
+      <textarea
+        class="form-control"
+        [class.is-invalid]="isInvalid('description')"
+        type="text"
+        id="description"
+        formControlName="description"
+      ></textarea>
+      <span class="invalid-feedback">
+        Digite uma descrição válida (Mínimo 16 e máximo 1024 caracteres)
+      </span>
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="medication">Medicação</label>
+      <input
+        class="form-control"
+        type="text"
+        id="medication"
+        formControlName="medication"
+      >
+    </div>
+
+    <div>
+      <label class="form-label fw-bold" for="dosageAndPrecautions">Dosagens e Precauções*</label>
+      <textarea
+        class="form-control"
+        [class.is-invalid]="isInvalid('dosageAndPrecautions')"
+        type="text"
+        id="dosageAndPrecautions"
+        formControlName="dosageAndPrecautions"
+      ></textarea>
+      <span class="invalid-feedback">
+        Digite uma informação válida (Mínimo 16 e máximo 256 caracteres)
+      </span>
+    </div>
+
+    <div class="d-flex justify-content-end mt-3 gap-3">
+      <div>
+        <button
+          class="btn btn-danger px-5 text-light rounded-0"
+          data-bs-toggle="modal" data-bs-target="#confirmModal"
+          (click)="$event.preventDefault()"
+          *ngIf="editMode"
+        >
+          Excluir
+        </button>
+      </div>
+      <div>
+        <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<app-search-patient-modal (patientSelected)="setPatient($event)" />
+<app-confirm-modal [message]="confirmMessage" (confirmed)="delete()" />
