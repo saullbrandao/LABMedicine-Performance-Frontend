@@ -12,6 +12,15 @@ import { MedicalRecordsComponent } from './pages/medical-records/medical-records
 import { PatientRegistrationComponent } from './pages/patient-registration/patient-registration.component';
 import { MedicationsComponent } from './pages/medication/medications.component';
 import { LoginComponent } from './pages/login/login.component';
+import { authGuard } from './guards/auth.guard';
+import { adminGuard } from './guards/admin.guard';
+import { doctorGuard } from './guards/doctor.guard';
+
+// TODO: add authorization to appointments
+// canActivate: [authGuard, doctorGuard]
+
+// TODO: add authorization to logs page
+// canActivate: [authGuard, adminGuard]
 
 const routes: Routes = [
   {
@@ -23,11 +32,11 @@ const routes: Routes = [
     path: 'cadastrar',
     component: UserRegistrationComponent,
     title: 'Cadastro de Usuários',
-    // TODO: add authorization
-    // canActivate: [],
+    canActivate: [authGuard, adminGuard],
   },
   {
     path: 'prontuarios',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -41,6 +50,7 @@ const routes: Routes = [
   },
   {
     path: 'pacientes',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -54,6 +64,7 @@ const routes: Routes = [
   },
   {
     path: 'medicamentos',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -67,6 +78,7 @@ const routes: Routes = [
   },
   {
     path: 'exames',
+    canActivate: [authGuard, doctorGuard],
     children: [
       {
         path: '',
@@ -80,6 +92,7 @@ const routes: Routes = [
   },
   {
     path: 'dietas',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -93,6 +106,7 @@ const routes: Routes = [
   },
   {
     path: 'exercicios',
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -109,11 +123,13 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     title: 'Página Inicial',
+    canActivate: [authGuard],
   },
   {
     path: 'nao-encontrado',
     component: NotFoundComponent,
     title: '404 | Não Encontrado',
+    canActivate: [authGuard],
   },
   {
     path: '**',

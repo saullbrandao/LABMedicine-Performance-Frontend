@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/models/patient';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { PatientService } from 'src/app/services/patient/patient.service';
 import { StatsService } from 'src/app/services/stats.service';
 import { UserService } from 'src/app/services/user.service';
@@ -45,16 +46,17 @@ export class HomeComponent implements OnInit {
   constructor(
     private patientService: PatientService,
     private userService: UserService,
-    private statsService: StatsService
+    private statsService: StatsService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    // TODO: only do this if the user is a ADMIN
-    this.userService.getAll().subscribe((data) => {
-      this.users = data;
-      this.filteredUsers = data;
-    });
-    // END TODO
+    if (this.isAdmin()) {
+      this.userService.getAll().subscribe((data) => {
+        this.users = data;
+        this.filteredUsers = data;
+      });
+    }
 
     this.patientService.getAll();
     this.patientService.patientsLoaded.subscribe((data) => {
@@ -98,6 +100,10 @@ export class HomeComponent implements OnInit {
         user.cpf.includes(term)
       );
     });
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 
   keepOrder = (a: any, b: any) => {
