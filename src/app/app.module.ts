@@ -10,6 +10,7 @@ import { ComponentsModule } from './components/components.module';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { AddTokenInterceptor } from "./interceptors/add-token.interceptor";
 
 @NgModule({
   declarations: [AppComponent, GenderValidatorDirective],
@@ -23,6 +24,11 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     NgxSpinnerModule.forRoot({ type: 'ball-clip-rotate' }),
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddTokenInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
