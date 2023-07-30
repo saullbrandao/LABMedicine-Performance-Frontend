@@ -1,22 +1,51 @@
-## Temp config (dev)
+<h1 align="center">
+  LABMedicine Performance
+</h1>
 
-Crie um arquivo de nome `.env` na raiz do projeto. 
+<h2 align="center">
+  Segundo Projeto do Módulo 3 do Devin[Philips]
+</h2>
+<br />
 
-Acesse o [card no Trello](https://trello.com/c/uItOzG6b) e coloque o token de acesso no arquivo .env:
+# 📑 Tabela de Conteúdo
 
-```TOKEN=[token]```.
+- [Sobre o projeto](#-sobre-o-projeto)
+- [Tecnologias](#-tecnologias)
+- [Iniciando](#-iniciando)
+  - [Requisitos](#requisitos)
+  - [Como rodar](#como-rodar)
 
-Substitua `[token]` pelo token encontrado no card.
+# 📃 Sobre o projeto
 
-#
+![LABMedicine](https://i.imgur.com/YAJw5RI.png)
 
-Para comunicar com o backend, realize a configuração abaixo:
+- Sistema de gestão hospitalar
+- Login usando email e senha
+- Menu lateral com navegação
+- Página inicial com estatísticas do sistema e listagem de pacientes 
+- Usuário pode cadastrar, editar ou deletar pacientes, consultas, exames, medicamentos, exercícios e dietas
+- Página de prontuário do paciente
+- Apenas o usuário Admin pode cadastrar novos usuários e ver a lista de logs do sistema 
 
-No arquivo `utils/constants.ts`, mude o valor da variável `API_URL` para:
+# 💻 Tecnologias
 
-```JS
-export const API_URL = 'http://localhost:8080/api';
-```
+- [Angular](https://angular.io/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Ngx Mask](https://jsdaddy.github.io/ngx-mask/)
+- [Ngx Spinner](https://napster2210.github.io/ngx-spinner/)
+- [Ngneat Hot Toast](https://ngneat.github.io/hot-toast/)
 
-#
+# 🚀 Iniciando
 
+## Requisitos
+
+- [Node.js](https://nodejs.org/en/)
+
+## Como rodar
+
+- Clonar repositório e instalar os pacotes com `npm install`
+- `npm start` pra rodar o projeto
+- Acesso através do http://localhost:4200/
+- Um usuário admin está setado pra facilitar o login:
+  - email: devs@labmedicine.com
+  - senha: 123456
