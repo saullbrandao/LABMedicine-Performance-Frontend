@@ -51,6 +51,7 @@ const routes: Routes = [
   {
     path: 'pacientes',
     canActivate: [authGuard],
+    title: 'Pacientes',
     children: [
       {
         path: '',
