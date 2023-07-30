@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/models/patient';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { PatientService } from 'src/app/services/patient/patient.service';
+import { PatientService } from 'src/app/services/patient.service';
 import { StatsService } from 'src/app/services/stats.service';
 import { UserService } from 'src/app/services/user.service';
 

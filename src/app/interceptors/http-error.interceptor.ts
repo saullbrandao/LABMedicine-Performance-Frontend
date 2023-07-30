@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { EMPTY, Observable, catchError } from 'rxjs';
-import { HttpErrorHandlerService } from '../services/http-error-handler/http-error-handler.service';
+import { HttpErrorHandlerService } from '../services/http-error-handler.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {

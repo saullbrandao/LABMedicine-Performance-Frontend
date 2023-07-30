@@ -6,17 +6,16 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ExerciseService } from './exercise.service';
-import { NotificationService } from 'src/app/services/notification/notification.service';
 import { ExerciseType } from '../../enums/exercise-type';
 import { Exercise } from 'src/app/models/exercise';
-import { ActivatedRoute } from '@angular/router';
-import { PatientService } from 'src/app/services/patient/patient.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Patient } from 'src/app/models/patient';
 import { DateTimeService } from 'src/app/services/date-time.service';
+import { PatientService } from 'src/app/services/patient.service';
+import { ExerciseService } from 'src/app/services/exercise.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
-// TODO: redirect the user to the appropriate page after the operation is done
 @Component({
   selector: 'app-exercise',
   templateUrl: './exercise.component.html',
@@ -37,6 +36,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     private patientService: PatientService,
     private exerciseService: ExerciseService,
     private notificationService: NotificationService,
@@ -103,7 +103,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const exercise = this.form.value;
+    const exercise: Exercise = this.form.value;
     exercise.date = this.dateTimeService.convertDateStringToISOFormat(
       exercise.date
     );
@@ -117,6 +117,7 @@ export class ExerciseComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => {
         this.notificationService.success(successMsg);
+        this.router.navigate(['/prontuarios', exercise.patientId]);
       });
   }
 

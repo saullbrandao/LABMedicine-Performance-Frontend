@@ -7,7 +7,6 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { DietsComponent } from './diets/diets.component';
-import { ExerciseComponent } from './exercises/exercise.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
@@ -20,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { ResetPasswordModalComponent } from './login/reset-password-modal/reset-password-modal.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { LogsComponent } from './logs/logs.component';
+import { ExerciseComponent } from './exercises/exercise.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +48,6 @@ import { LogsComponent } from './logs/logs.component';
     AgePipe,
     OrderByDateTimePipe,
   ],
-  providers: [provideNgxMask(), DatePipe]
+  providers: [provideNgxMask(), DatePipe],
 })
 export class PagesModule {}

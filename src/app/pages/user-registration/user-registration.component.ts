@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { NotificationService } from '../../services/notification/notification.service';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { Gender } from "../../enums/gender";
-import { UserType } from "../../enums/user-type";
+import { Gender } from '../../enums/gender';
+import { UserType } from '../../enums/user-type';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -12,8 +18,12 @@ import { UserType } from "../../enums/user-type";
 })
 export class UserRegistrationComponent {
   form: FormGroup;
-  genderOptions: (string | Gender)[] = Object.values(Gender).filter(value => isNaN(Number(value)));
-  userTypeOptions: (string | UserType)[] = Object.values(UserType).filter(value => isNaN(Number(value)));
+  genderOptions: (string | Gender)[] = Object.values(Gender).filter((value) =>
+    isNaN(Number(value))
+  );
+  userTypeOptions: (string | UserType)[] = Object.values(UserType).filter(
+    (value) => isNaN(Number(value))
+  );
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,14 +57,14 @@ export class UserRegistrationComponent {
   }
 
   genderValidator(control: FormControl): ValidationErrors | null {
-    if(!control.value.length || control.value === 'Selecione') {
+    if (!control.value.length || control.value === 'Selecione') {
       return { genderInvalid: true };
     }
     return null;
   }
 
   userTypeValidator(control: FormControl): ValidationErrors | null {
-    if(!control.value.length || control.value === 'Selecione') {
+    if (!control.value.length || control.value === 'Selecione') {
       return { typeInvalid: true };
     }
     return null;

@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { NotificationService } from '../services/notification/notification.service';
+import { NotificationService } from '../services/notification.service';
 import { inject } from '@angular/core';
 
 export const adminGuard = () => {

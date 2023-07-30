@@ -1,17 +1,17 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { AppointmentService } from "../../services/appointment/appointment.service";
-import { Appointment } from "../../models/appointment";
-import { Subject, takeUntil } from "rxjs";
-import { Patient } from "../../models/patient";
-import { Response } from "../../models/response";
-import { NotificationService } from "../../services/notification/notification.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppointmentService } from '../../services/appointment.service';
+import { Appointment } from '../../models/appointment';
+import { Subject, takeUntil } from 'rxjs';
+import { Patient } from '../../models/patient';
+import { Response } from '../../models/response';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
-  styleUrls: ['./appointments.component.css']
+  styleUrls: ['./appointments.component.css'],
 })
 export class AppointmentsComponent {
   @ViewChild('patientInput') patientInput!: ElementRef;
@@ -21,7 +21,7 @@ export class AppointmentsComponent {
   editMode = false;
   disablePatientInput = true;
   header = 'Preencha os campos para cadastrar nova consulta';
-  confirmMessage = 'Esta consulta será excluída. Confirma a operação?'
+  confirmMessage = 'Esta consulta será excluída. Confirma a operação?';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,67 +30,76 @@ export class AppointmentsComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    [appointmentService.appointmentDeleted, appointmentService.appointmentSaved, appointmentService.httpError].forEach(subject => {
-      subject.pipe(takeUntil(this.componentDestroyed)).subscribe(this.toastResponse);
+    [
+      appointmentService.appointmentDeleted,
+      appointmentService.appointmentSaved,
+      appointmentService.httpError,
+    ].forEach((subject) => {
+      subject
+        .pipe(takeUntil(this.componentDestroyed))
+        .subscribe(this.toastResponse);
     });
-    appointmentService.editingAppointmentLoaded.pipe(takeUntil(this.componentDestroyed)).subscribe(this.loadAppointment)
+    appointmentService.editingAppointmentLoaded
+      .pipe(takeUntil(this.componentDestroyed))
+      .subscribe(this.loadAppointment);
     this.form = this.formBuilder.group(this.getFormData());
   }
 
   getFormData(appointment: Appointment | undefined = undefined) {
     const now = new Date();
 
-    if(appointment) {
+    if (appointment) {
       this.patientInput.nativeElement.value = appointment.patientName;
     }
 
     return {
-      id: [ appointment?.id || 0 ],
+      id: [appointment?.id || 0],
       patientId: [
         appointment?.patientId || 0,
-        [ Validators.required, Validators.min(1) ]
+        [Validators.required, Validators.min(1)],
       ],
-      reason: [ appointment?.reason || '' ,
+      reason: [
+        appointment?.reason || '',
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.maxLength(64)
-        ]
+          Validators.maxLength(64),
+        ],
       ],
       date: [
-        appointment?.date || now.toISOString().substring(0,10),
-        [ Validators.required ]
+        appointment?.date || now.toISOString().substring(0, 10),
+        [Validators.required],
       ],
       time: [
-        appointment?.time || now.toLocaleTimeString().substring(0,5),
-        [ Validators.required ]
+        appointment?.time || now.toLocaleTimeString().substring(0, 5),
+        [Validators.required],
       ],
       description: [
         appointment?.description || '',
         [
           Validators.required,
           Validators.minLength(16),
-          Validators.maxLength(1024)
-        ]
+          Validators.maxLength(1024),
+        ],
       ],
-      medication: [ appointment?.medication || null ],
+      medication: [appointment?.medication || null],
       dosageAndPrecautions: [
         appointment?.dosageAndPrecautions || '',
         [
           Validators.required,
           Validators.minLength(16),
-          Validators.maxLength(256)
-        ]
+          Validators.maxLength(256),
+        ],
       ],
-      status: [ appointment ? appointment.status : true ]
-    }
+      status: [appointment ? appointment.status : true],
+    };
   }
 
   isInvalid(input: string) {
     return this.form.get(input)?.invalid && this.form.get(input)?.touched;
   }
 
-  get patientFormField(){
+  get patientFormField() {
     return this.form.get('patientId');
   }
 
@@ -101,32 +110,32 @@ export class AppointmentsComponent {
   }
 
   toastResponse = (response: Response) => {
-    if(![200, 201, 202].includes(response.status)) {
+    if (![200, 201, 202].includes(response.status)) {
       this.notificationService.error(response.message);
 
-      if(response.status === 404) this.goToRegistration();
+      if (response.status === 404) this.goToRegistration();
 
       return;
     }
 
     this.notificationService.success(response.message);
 
-    if(response.status === 201) this.formReset();
-    if(response.status === 202 && response.message.includes('excluída')) this.goToRegistration();
-  }
+    if (response.status === 201) this.formReset();
+    if (response.status === 202 && response.message.includes('excluída'))
+      this.goToRegistration();
+  };
 
-
-  goToRegistration(){
+  goToRegistration() {
     this.router.navigate(['consultas']);
   }
 
-  formReset(){
+  formReset() {
     this.patientInput.nativeElement.value = '';
     this.form = this.formBuilder.group(this.getFormData());
   }
 
   onSubmit() {
-    if(!this.form.valid) {
+    if (!this.form.valid) {
       Object.keys(this.form.controls).forEach((field) => {
         const control = this.form.get(field);
         control?.markAllAsTouched();
@@ -141,7 +150,7 @@ export class AppointmentsComponent {
   loadAppointment = (response: Response) => {
     const appointment = response.data as Appointment;
     this.form = this.formBuilder.group(this.getFormData(appointment));
-  }
+  };
 
   delete() {
     this.appointmentService.delete(this.form.get('id')?.value);
@@ -149,13 +158,13 @@ export class AppointmentsComponent {
 
   ngOnInit() {
     this.editMode = !!this.activatedRoute.snapshot.params['id'];
-    if(this.editMode) {
+    if (this.editMode) {
       this.header = 'Preencha os campos para editar a consulta';
       this.appointmentService.get(this.activatedRoute.snapshot.params['id']);
     }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.componentDestroyed.next('');
   }
 }

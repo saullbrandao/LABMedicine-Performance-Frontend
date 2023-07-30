@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Log } from 'src/app/models/log';
-import { LogService } from './log.service';
+import { LogService } from '../../services/log.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({

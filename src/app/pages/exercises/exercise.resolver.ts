@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Exercise } from 'src/app/models/exercise';
-import { ExerciseService } from './exercise.service';
+import { ExerciseService } from '../../services/exercise.service';
 import { ExerciseType } from 'src/app/enums/exercise-type';
 
 @Injectable({

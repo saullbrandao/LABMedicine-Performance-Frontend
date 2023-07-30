@@ -1,12 +1,18 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
-import { debounceTime, fromEvent, Subject, takeUntil } from "rxjs";
-import { PatientService } from "../../services/patient/patient.service";
-import { Patient } from "../../models/patient";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { debounceTime, fromEvent, Subject, takeUntil } from 'rxjs';
+import { PatientService } from '../../services/patient.service';
+import { Patient } from '../../models/patient';
 
 @Component({
   selector: 'app-search-patient-modal',
   templateUrl: './select-patient-modal.component.html',
-  styleUrls: ['./select-patient-modal.component.css']
+  styleUrls: ['./select-patient-modal.component.css'],
 })
 export class SelectPatientModalComponent {
   @ViewChild('searchPatientInput') searchPatientInput!: ElementRef;
@@ -20,26 +26,26 @@ export class SelectPatientModalComponent {
   patients: Patient[] = [];
 
   constructor(private patientService: PatientService) {
-    patientService.searchedPatients.subscribe(data => this.patients = data);
+    patientService.searchedPatients.subscribe((data) => (this.patients = data));
   }
 
   searchPatient = (value: string) => {
     this.patientService.getAllByName(value);
-  }
+  };
 
-  select(patient: Patient){
+  select(patient: Patient) {
     this.patientSelected.emit(patient);
     this.closeModal();
   }
 
-  closeModal(){
+  closeModal() {
     this.modalCloseBtn.nativeElement.click();
   }
 
   resetState = () => {
     this.searchPatientInput.nativeElement.value = '';
     this.patients = [];
-  }
+  };
 
   ngAfterViewInit() {
     const input = this.searchPatientInput.nativeElement;
@@ -50,19 +56,18 @@ export class SelectPatientModalComponent {
       .subscribe((e: any) => {
         const value = e.target.value;
 
-        if(!value.length) {
+        if (!value.length) {
           this.patients = [];
           return;
         }
 
-        this.searchPatient(e.target.value)
+        this.searchPatient(e.target.value);
       });
 
-    fromEvent(modal, 'hidden.bs.modal')
-      .subscribe(this.resetState);
+    fromEvent(modal, 'hidden.bs.modal').subscribe(this.resetState);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.componentDestroyed.next('');
   }
 }

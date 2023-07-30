@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
-import { ExerciseComponent } from './pages/exercises/exercise.component';
 import { ExerciseResolver } from './pages/exercises/exercise.resolver';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ExamsComponent } from './pages/exams/exams.component';
@@ -17,6 +16,7 @@ import { adminGuard } from './guards/admin.guard';
 import { doctorGuard } from './guards/doctor.guard';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
 import { LogsComponent } from './pages/logs/logs.component';
+import { ExerciseComponent } from './pages/exercises/exercise.component';
 
 const routes: Routes = [
   {
