@@ -9,7 +9,7 @@ import { DietsComponent } from './pages/diets/diets.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MedicalRecordComponent } from './pages/medical-record/medical-record.component';
 import { MedicalRecordsComponent } from './pages/medical-records/medical-records.component';
-import { PatientRegistrationComponent } from './pages/patient-registration/patient-registration.component';
+import { PatientsComponent } from "./pages/patients/patients.component";
 import { MedicationsComponent } from './pages/medication/medications.component';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guards/auth.guard';
@@ -54,11 +54,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: PatientRegistrationComponent,
+        component: PatientsComponent,
       },
       {
         path: ':id',
-        component: PatientRegistrationComponent,
+        component: PatientsComponent,
       },
     ],
   },

@@ -1,7 +1,17 @@
 <section class="p-4">
   <h2>{{ header }}</h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3 d-flex flex-column gap-3">
+    <div *ngIf="editMode" class="form-check form-switch form-check-reverse">
+      <label class="form-check-label fw-bold" for="status">Paciente ativo</label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="status"
+        formControlName="status"
+      >
+    </div>
+
     <div>
       <label class="form-label fw-bold" for="name">Nome Completo*</label>
       <input
@@ -24,8 +34,8 @@
         id="gender"
         formControlName="gender"
       >
-        <option value="m"> Masculino</option>
-        <option value="f"> Feminino</option>
+        <option selected disabled>Selecione</option>
+        <option *ngFor="let gender of genderOptions" [value]="gender">{{gender}}</option>
       </select>
       <span class="invalid-feedback">Selecione um gênero</span>
     </div>
@@ -36,7 +46,7 @@
         class="form-control"
         [class.is-invalid]="isInvalid('birthDate')"
         type="date"
-        id="birthDate "
+        id="birthDate"
         formControlName="birthDate"
       >
       <span class="invalid-feedback">
@@ -81,8 +91,8 @@
         id="maritalStatus"
         formControlName="maritalStatus"
       >
-      <option   value="S">Solteiro</option>
-      <option   value="C">Casado</option>
+        <option selected disabled>Selecione</option>
+        <option *ngFor="let maritalStatus of maritalStatusOptions" [value]="maritalStatus">{{maritalStatus}}</option>
       </select>
       <span class="invalid-feedback">Selecione um estado civil</span>
     </div>
@@ -95,7 +105,7 @@
         type="text"
         id="phone"
         formControlName="phone"
-        mask="(99) 9 9999-9999"
+        mask="(00) 0 0000-0000"
       >
       <span class="invalid-feedback">
         Digite um telefone válido
@@ -117,13 +127,13 @@
     </div>
 
     <div>
-      <label class="form-label fw-bold" for="nationality">Naturalidade*</label>
+      <label class="form-label fw-bold" for="naturality">Naturalidade*</label>
       <input
         class="form-control"
-        [class.is-invalid]="isInvalid('nationality')"
+        [class.is-invalid]="isInvalid('naturality')"
         type="text"
-        id="nationality"
-        formControlName="nationality"
+        id="naturality"
+        formControlName="naturality"
       >
       <span class="invalid-feedback">
         Digite uma Naturalidade válida
@@ -138,7 +148,7 @@
         type="text"
         id="emergencyContact"
         formControlName="emergencyContact"
-        mask="(99) 9 9999-9999"
+        mask="(00) 0 0000-0000"
       >
       <span class="invalid-feedback">
         Digite um telefone válido
@@ -191,7 +201,7 @@
       <label class="form-label fw-bold" for="insuranceValidity">Data de validade do convênio</label>
       <input
         class="form-control"
-        type="text"
+        type="date"
         id="insuranceValidity"
         formControlName="insuranceValidity"
       >
@@ -200,129 +210,124 @@
       </span>
     </div>
 
-    <h2>Dados Endereço</h2>
-    <hr/>
-    <div>
-      <label class="form-label fw-bold" for="cep">CEP*</label>
-      <input
-        class="form-control"
-        type="text"
-        id="cep"
-        formControlName="cep"
-        (onblur)="handleCepBlur()"
-      >
-      <span class="invalid-feedback">
+    <div formGroupName="address">
+      <h2>Dados Endereço</h2>
+      <hr/>
+      <div>
+        <label class="form-label fw-bold" for="cep">CEP*</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('cep')"
+          type="text"
+          id="cep"
+          formControlName="cep"
+          mask="00000-000"
+          (blur)="handleCepBlur()"
+        >
+        <span class="invalid-feedback">
         Digite um cep válido
       </span>
-    </div>
+      </div>
 
-    <div>
-      <label class="form-label fw-bold" for="city">Cidade*</label>
-      <input
-        class="form-control"
-        type="text"
-        id="city"
-        formControlName="city"
-      >
-      <span class="invalid-feedback">
+      <div>
+        <label class="form-label fw-bold" for="city">Cidade*</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('city')"
+          type="text"
+          id="city"
+          formControlName="city"
+        >
+        <span class="invalid-feedback">
         Digite um cidade válida
       </span>
-    </div>
+      </div>
 
-    <div>
-      <label class="form-label fw-bold" for="state">Estado*</label>
-      <input
-        class="form-control"
-        type="text"
-        id="state"
-        formControlName="state"
-      >
-      <span class="invalid-feedback">
+      <div>
+        <label class="form-label fw-bold" for="state">Estado*</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('state')"
+          type="text"
+          id="state"
+          formControlName="state"
+        >
+        <span class="invalid-feedback">
         Digite um Estado válido
       </span>
-    </div>
+      </div>
 
-    <div>
-      <label class="form-label fw-bold" for="street">Rua*</label>
-      <input
-        class="form-control"
-        type="text"
-        id="street"
-        formControlName="street"
-      >
-      <span class="invalid-feedback">
+      <div>
+        <label class="form-label fw-bold" for="street">Rua*</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('street')"
+          type="text"
+          id="street"
+          formControlName="street"
+        >
+        <span class="invalid-feedback">
         Digite uma ruma válida
       </span>
-    </div>
+      </div>
 
-    <div>
-      <label class="form-label fw-bold" for="number">Número*</label>
-      <input
-        class="form-control"
-        type="text"
-        id="number"
-        formControlName="number"
-      >
-      <span class="invalid-feedback">
+      <div>
+        <label class="form-label fw-bold" for="number">Número*</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('number')"
+          type="text"
+          id="number"
+          formControlName="number"
+        >
+        <span class="invalid-feedback">
         Digite um número válido
       </span>
-    </div>
+      </div>
 
-    <div>
-      <label class="form-label fw-bold" for="complement">Complemento</label>
-      <input
-        class="form-control"
-        type="text"
-        id="cep"
-        formControlName="complement"
-      >
-    </div>
+      <div>
+        <label class="form-label fw-bold" for="complement">Complemento</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('complement')"
+          type="text"
+          id="complement"
+          formControlName="complement"
+        >
+      </div>
 
-    <div>
-      <label class="form-label fw-bold" for="neighborhood">Bairro*</label>
-      <input
-        class="form-control"
-        type="text"
-        id="neighborhood"
-        formControlName="neighborhood"
-      >
-      <span class="invalid-feedback">
+      <div>
+        <label class="form-label fw-bold" for="neighborhood">Bairro*</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('neighborhood')"
+          type="text"
+          id="neighborhood"
+          formControlName="neighborhood"
+        >
+        <span class="invalid-feedback">
         Digite um bairro válido
       </span>
+      </div>
+
+      <div>
+        <label class="form-label fw-bold" for="referencePoint">Ponto de Referência</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="isInvalid('referencePoint')"
+          type="text"
+          id="referencePoint"
+          formControlName="referencePoint"
+        >
+      </div>
     </div>
-
-    <div>
-      <label class="form-label fw-bold" for="CEP">Ponto de Referência</label>
-      <input
-        class="form-control"
-        type="text"
-        id="referencePoint"
-        formControlName="referencePoint"
-      >
-    </div>
-    <hr/>
-
-    <div class="form-check form-switch form-check-reverse">
-      <label class="form-check-label fw-bold" for="systemStatus">Status no sistema </label>
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="systemStatus"
-        formControlName="systemStatus"
-      >
-    </div>
-
-
-
-
 
     <div class="d-flex justify-content-end mt-3 gap-3">
-      <div>
+      <div *ngIf="editMode">
         <button
           class="btn btn-danger px-5 text-light rounded-0"
           data-bs-toggle="modal" data-bs-target="#confirmModal"
           (click)="$event.preventDefault()"
-          [class.d-none]="!editMode"
         >
           Excluir
         </button>

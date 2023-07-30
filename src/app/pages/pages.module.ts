@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { PatientRegistrationComponent } from './patient-registration/patient-registration.component';
+import { PatientsComponent } from './patients/patients.component';
 import { ExamsComponent } from './exams/exams.component';
 import { ComponentsModule } from '../components/components.module';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
@@ -22,7 +22,7 @@ import { ResetPasswordModalComponent } from './login/reset-password-modal/reset-
 @NgModule({
   declarations: [
     UserRegistrationComponent,
-    PatientRegistrationComponent,
+    PatientsComponent,
     ExamsComponent,
     DietsComponent,
     ExerciseComponent,

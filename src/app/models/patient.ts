@@ -10,7 +10,7 @@ export type Patient = {
   maritalStatus: string,
   phone: string,
   email: string,
-  nationality: string,
+  naturality: string,
   emergencyContact: string,
   allergyList: string,
   specificCareList: string
