@@ -16,6 +16,8 @@ import { MedicalRecordComponent } from './medical-record/medical-record.componen
 import { OrderByDateTimePipe } from '../pipes/order-by.pipe';
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
 import { MedicationsComponent } from './medication/medications.component';
+import { LoginComponent } from './login/login.component';
+import { ResetPasswordModalComponent } from './login/reset-password-modal/reset-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { MedicationsComponent } from './medication/medications.component';
     MedicalRecordComponent,
     MedicalRecordsComponent,
     MedicationsComponent,
+    LoginComponent,
+    ResetPasswordModalComponent,
   ],
   imports: [
     CommonModule,
