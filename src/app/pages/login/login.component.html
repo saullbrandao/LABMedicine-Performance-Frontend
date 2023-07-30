@@ -1,0 +1,60 @@
+<div class="d-flex min-vw-100 min-vh-100 bg-white">
+  <div class="vstack gap-0 col-5">
+    <div
+      class="d-flex flex-column flex-sm-row align-items-center justify-content-end p-5 gap-2 gap-sm-4"
+    >
+      <span class="fw-semibold">Não possui uma conta?</span>
+      <button
+        class="btn btn-outline-primary px-5 fw-semibold"
+        type="button"
+        (click)="handleRegistration()"
+      >
+        Criar Conta
+      </button>
+    </div>
+    <form
+      [formGroup]="form"
+      (submit)="onSubmit()"
+      class="vstack align-self-center gap-4 w-50"
+    >
+      <h1 class="mb-5 fw-bold">Login</h1>
+      <div class="">
+        <label class="form-label fw-semibold" for="email">E-Mail</label>
+        <input
+          class="form-control"
+          type="email"
+          id="email"
+          formControlName="email"
+          [class.is-invalid]="isInvalid('email')"
+        />
+        <span class="invalid-feedback">Digite um email válido</span>
+      </div>
+      <div class="">
+        <label class="form-label fw-semibold" for="password">Senha</label>
+        <input
+          class="form-control"
+          type="password"
+          id="password"
+          formControlName="password"
+          [class.is-invalid]="isInvalid('password')"
+        />
+        <span class="invalid-feedback"
+          >Digite uma senha válida(Mínimo 9 caracteres)</span
+        >
+      </div>
+
+      <button class="btn btn-primary text-light fw-semibold" type="submit">
+        Entrar
+      </button>
+      <a
+        class="text-center text-decoration-none"
+        href=""
+        data-bs-toggle="modal"
+        data-bs-target="#resetPasswordModal"
+        >Esqueceu sua senha?</a
+      >
+    </form>
+  </div>
+</div>
+
+<app-reset-password-modal></app-reset-password-modal>
