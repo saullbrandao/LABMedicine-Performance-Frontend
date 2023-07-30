@@ -9,19 +9,14 @@ import { DietsComponent } from './pages/diets/diets.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MedicalRecordComponent } from './pages/medical-record/medical-record.component';
 import { MedicalRecordsComponent } from './pages/medical-records/medical-records.component';
-import { PatientsComponent } from "./pages/patients/patients.component";
+import { PatientsComponent } from './pages/patients/patients.component';
 import { MedicationsComponent } from './pages/medication/medications.component';
 import { LoginComponent } from './pages/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { adminGuard } from './guards/admin.guard';
 import { doctorGuard } from './guards/doctor.guard';
-import { AppointmentsComponent } from "./pages/appointments/appointments.component";
-
-// TODO: add authorization to appointments
-// canActivate: [authGuard, doctorGuard]
-
-// TODO: add authorization to logs page
-// canActivate: [authGuard, adminGuard]
+import { AppointmentsComponent } from './pages/appointments/appointments.component';
+import { LogsComponent } from './pages/logs/logs.component';
 
 const routes: Routes = [
   {
@@ -33,6 +28,12 @@ const routes: Routes = [
     path: 'cadastrar',
     component: UserRegistrationComponent,
     title: 'Cadastro de Usuários',
+    canActivate: [authGuard, adminGuard],
+  },
+  {
+    path: 'registros',
+    component: LogsComponent,
+    title: 'Página de Registros',
     canActivate: [authGuard, adminGuard],
   },
   {
