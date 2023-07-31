@@ -8,7 +8,7 @@
     </thead>
     <tbody *ngIf="logs.length > 0; else noLogs">
       <tr *ngFor="let log of logs">
-        <td>{{ log.createdAt }}</td>
+        <td>{{ log.createdAt | date : "medium" }}</td>
         <td class="col-8">{{ log.action }}</td>
       </tr>
     </tbody>

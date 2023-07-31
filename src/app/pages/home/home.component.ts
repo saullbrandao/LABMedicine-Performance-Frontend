@@ -65,8 +65,6 @@ export class HomeComponent implements OnInit {
     });
 
     this.statsService.getStats().subscribe((data) => {
-      console.log(data);
-
       this.systemStats.pacientes.quantity = data.patient;
       this.systemStats.consultas.quantity = data.appointment;
       this.systemStats.exames.quantity = data.exam;
