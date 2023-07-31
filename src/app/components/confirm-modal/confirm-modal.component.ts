@@ -7,9 +7,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ConfirmModalComponent {
   @Input() message!: string;
+  @Input() modalId!: string;
   @Output() confirmed = new EventEmitter();
 
   confirm(){
     this.confirmed.emit();
+  }
+
+  getModalId() {
+    return this.modalId ?? 'confirmModal';
   }
 }
