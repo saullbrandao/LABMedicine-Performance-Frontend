@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Exercise } from 'src/app/models/exercise';
 import { ExerciseService } from '../../services/exercise.service';
@@ -8,7 +8,7 @@ import { ExerciseType } from 'src/app/enums/exercise-type';
 @Injectable({
   providedIn: 'root',
 })
-export class ExerciseResolver implements Resolve<Exercise> {
+export class ExerciseResolver  {
   constructor(private exerciseService: ExerciseService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Exercise> {
