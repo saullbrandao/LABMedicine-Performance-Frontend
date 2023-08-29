@@ -11,11 +11,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TitleService } from 'src/app/services/title.service';
 
 @Component({
-  selector: 'toolbar',
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css'],
+  selector: 'topbar',
+  templateUrl: './topbar.component.html',
+  styleUrls: ['./topbar.component.css'],
 })
-export class ToolbarComponent implements AfterViewInit {
+export class TopbarComponent implements AfterViewInit {
   title: string = '';
   username: string | undefined = '';
   private destroy$ = new Subject<void>();

@@ -1,0 +1,22 @@
+<div
+  class="sticky-top d-flex bg-primary text-light justify-content-between align-items-center px-4 py-1"
+  *ngIf="shouldDisplay()"
+>
+  <button
+    type="button"
+    class="navbar-toggler ml-auto"
+    data-bs-toggle="collapse"
+    data-bs-target="#menubar"
+    aria-controls="menubar"
+    aria-expanded="true"
+    title="Esconder/Mostrar menu"
+    #toggleButton
+  >
+    <i class="bi bi-list fs-2"></i>
+  </button>
+  <span class="fs-3 text-nowrap fw-bold">{{ title }}</span>
+  <div class="d-flex gap-2 align-items-center">
+    <span class="d-none d-md-block">{{ username }}</span>
+    <i class="bi bi-person-circle fs-2"></i>
+  </div>
+</div>
