@@ -87,6 +87,7 @@ export class AuthService {
     const token = this.getUserToken();
     return this.decodeToken(token).role === 'MEDICO';
   }
+
   isNurse() {
     const token = this.getUserToken();
     return this.decodeToken(token).role === 'ENFERMEIRO';
