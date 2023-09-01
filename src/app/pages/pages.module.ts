@@ -20,6 +20,9 @@ import { ResetPasswordModalComponent } from './login/reset-password-modal/reset-
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { LogsComponent } from './logs/logs.component';
 import { ExerciseComponent } from './exercises/exercise.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { ExerciseComponent } from './exercises/exercise.component';
     NgxMaskDirective,
     NgxMaskPipe,
     ComponentsModule,
+    MatCardModule,
+    MatListModule,
+    MatIconModule,
     RouterModule,
     AgePipe,
     OrderByDateTimePipe,

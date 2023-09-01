@@ -15,27 +15,27 @@ export class HomeComponent implements OnInit {
   systemStats = {
     pacientes: {
       quantity: 0,
-      icon: 'person-circle',
+      icon: 'person',
     },
     consultas: {
       quantity: 0,
-      icon: 'postcard-heart',
+      icon: 'event_available',
     },
     exames: {
       quantity: 0,
-      icon: 'clipboard-pulse',
+      icon: 'monitor_heart',
     },
     medicamentos: {
       quantity: 0,
-      icon: 'capsule',
+      icon: 'medication',
     },
     exercicios: {
       quantity: 0,
-      icon: 'lungs',
+      icon: 'fitness_center',
     },
     dietas: {
       quantity: 0,
-      icon: 'journal-text',
+      icon: 'restaurant_menu',
     },
   };
   patients: Patient[] = [];

@@ -23,3 +23,7 @@ mat-sidenav {
 mat-icon {
   margin-right: 8px;
 }
+
+mat-sidenav-content {
+  padding: 1rem 2rem;
+}
