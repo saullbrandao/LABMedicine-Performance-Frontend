@@ -7,6 +7,7 @@ import { Patient } from '../../models/patient';
 import { Response } from '../../models/response';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-appointments',
@@ -21,12 +22,12 @@ export class AppointmentsComponent {
   editMode = false;
   disablePatientInput = true;
   header = 'Preencha os campos para cadastrar nova consulta';
-  confirmMessage = 'Esta consulta será excluída. Confirma a operação?';
 
   constructor(
     private formBuilder: FormBuilder,
     private appointmentService: AppointmentService,
     private notificationService: NotificationService,
+    private dialogService: DialogService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -154,6 +155,13 @@ export class AppointmentsComponent {
 
   delete() {
     this.appointmentService.delete(this.form.get('id')?.value);
+  }
+
+  openDialog() {
+    this.dialogService.openDialog(
+      () => this.delete(),
+      'Esta consulta será excluída. Confirma a operação?'
+    );
   }
 
   ngOnInit() {

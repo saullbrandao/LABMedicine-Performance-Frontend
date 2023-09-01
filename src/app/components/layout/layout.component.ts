@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { TitleService } from 'src/app/services/title.service';
-import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
-import { MatDialog } from '@angular/material/dialog';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-layout',
@@ -67,7 +66,7 @@ export class LayoutComponent {
     private titleService: TitleService,
     private authService: AuthService,
     private changeDetectorRef: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialogService: DialogService
   ) {
     this.displayToolbarAndSidenav = !this.router.isActive('/login', {
       paths: 'exact',
@@ -77,20 +76,11 @@ export class LayoutComponent {
     });
   }
 
-  // TODO: create a service to hold this logic
   openDialog() {
-    const dialogRef = this.dialog.open(ConfirmModalComponent, {
-      width: '250px',
-      data: {
-        message: 'Deseja realmente sair?',
-      },
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
-        this.logout();
-      }
-    });
+    this.dialogService.openDialog(
+      () => this.logout(),
+      'Deseja realmente sair?'
+    );
   }
 
   ngAfterViewInit(): void {

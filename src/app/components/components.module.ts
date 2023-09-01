@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { SelectPatientModalComponent } from './search-patient-modal/select-patient-modal.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -14,12 +14,12 @@ import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
-    ConfirmModalComponent,
+    ConfirmDialogComponent,
     SelectPatientModalComponent,
     LayoutComponent,
   ],
   exports: [
-    ConfirmModalComponent,
+    ConfirmDialogComponent,
     SelectPatientModalComponent,
     LayoutComponent,
   ],

@@ -15,6 +15,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { Response } from '../../models/response';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-patients',
@@ -27,7 +28,6 @@ export class PatientsComponent {
   patientFormFieldOptions: { id: number; name: string }[] = [];
   editMode = false;
   header = 'Preencha os campos para cadastrar um novo paciente';
-  confirmMessage = 'Este paciente será excluído. Confirma a operação?';
   genderOptions: (string | Gender)[];
   maritalStatusOptions: (string | MaritalStatus)[];
 
@@ -36,6 +36,7 @@ export class PatientsComponent {
     private viaCepService: ViacepService,
     private patientService: PatientService,
     private notificationService: NotificationService,
+    private dialogService: DialogService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
@@ -235,6 +236,13 @@ export class PatientsComponent {
         });
       }
     }
+  }
+
+  openDialog() {
+    this.dialogService.openDialog(
+      () => this.delete(),
+      'Este paciente será excluído. Confirma a operação?'
+    );
   }
 
   ngOnInit() {
