@@ -1,0 +1,42 @@
+<!-- TODO: collapse the sidebar when on small devices -->
+<nav
+  class="position-sticky navbar navbar-expand-xl top-0 min-vh-100 bg-primary"
+  *ngIf="shouldDisplay()"
+>
+  <div
+    class="collapse collapse-horizontal px-4 pt-1 min-vh-100 show"
+    id="menubar"
+    #menubar
+  >
+    <span class="fw-bold fs-3 text-light">LABMedicine</span>
+
+    <ul class="navbar-nav d-flex flex-column gap-2 mt-4">
+      <li *ngFor="let item of menuCategories">
+        <a
+          *ngIf="userHasPermission(item.userTypes)"
+          class="btn btn-outline-light text-nowrap d-flex align-items-center gap-2 ps-2 pe-2 py-2"
+          routerLink="{{ item.route }}"
+          [routerLinkActive]="item.route ? 'btn-light text-dark' : ''"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <i class="bi" ngClass="bi-{{ item.icon }}"></i>
+          {{ item.title | titlecase }}
+        </a>
+      </li>
+      <button
+        class="btn btn-danger text-nowrap ps-2 pe-2 py-2"
+        data-bs-toggle="modal"
+        data-bs-target="#confirmLogoutModal"
+        (click)="$event.preventDefault()"
+      >
+        Sair
+      </button>
+    </ul>
+  </div>
+</nav>
+
+<app-confirm-modal
+  [modalId]="'confirmLogoutModal'"
+  [message]="confirmMessage"
+  (confirmed)="logout()"
+/>

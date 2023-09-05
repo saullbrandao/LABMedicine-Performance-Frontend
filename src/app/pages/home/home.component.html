@@ -9,15 +9,11 @@
           *ngFor="let stat of systemStats | keyvalue : keepOrder"
         >
           <div class="card d-flex align-items-center gap-1 p-1 shadow">
-            <div
-              class="d-flex flex-column flex-md-row gap-1 align-items-center"
-            >
-              <i class="bi fs-1" ngClass="bi-{{ stat.value.icon }}"></i>
-              <span class="fs-1 fw-bold">{{ stat.value.quantity }}</span>
-            </div>
-            <span class="fw-bold d-none d-md-block">{{
+            <span class="fs-4 fw-bold d-none d-xl-block">{{
               stat.key | titlecase
             }}</span>
+            <i class="bi fs-1" ngClass="bi-{{ stat.value.icon }}"></i>
+            <span class="fw-bold fs-4">{{ stat.value.quantity }}</span>
           </div>
         </li>
       </ul>
