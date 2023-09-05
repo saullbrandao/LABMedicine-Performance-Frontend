@@ -2,11 +2,11 @@ mat-card-title {
   margin-bottom: 2rem;
 }
 
-.stat-card-list {
+.card-list {
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 1rem;
+  margin: 1rem;
 }
 
 .stat-card {
@@ -20,8 +20,22 @@ mat-card-title {
   padding: 0.5rem;
 }
 
+.patients-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 mat-icon {
   font-size: 4rem;
   width: 4rem;
   height: 4rem;
+}
+
+mat-card-title-group {
+  text-align: center;
+}
+
+.search-input {
+  width: 100%;
 }

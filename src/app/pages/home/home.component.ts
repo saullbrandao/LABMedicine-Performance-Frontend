@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PatientService } from 'src/app/services/patient.service';
 import { StatsService } from 'src/app/services/stats.service';
 import { UserService } from 'src/app/services/user.service';
+import { debounce } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -40,8 +41,8 @@ export class HomeComponent implements OnInit {
   };
   patients: Patient[] = [];
   users: User[] = [];
-  filteredPatients = this.patients;
-  filteredUsers = this.users;
+  filteredPatients: Patient[] = [];
+  filteredUsers: User[] = [];
 
   constructor(
     private patientService: PatientService,
@@ -74,6 +75,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // TODO: implement the search on the API
   filterPatients(searchTerm: string) {
     this.filteredPatients = this.patients.filter((patient) => {
       const name = patient.name.toLowerCase();
@@ -82,7 +84,6 @@ export class HomeComponent implements OnInit {
       return (
         name.includes(term) ||
         patient.email.includes(term) ||
-        patient.phone.includes(term) ||
         patient.cpf.includes(term)
       );
     });
@@ -96,7 +97,6 @@ export class HomeComponent implements OnInit {
       return (
         name.includes(term) ||
         user.email.includes(term) ||
-        user.phone.includes(term) ||
         user.cpf.includes(term)
       );
     });

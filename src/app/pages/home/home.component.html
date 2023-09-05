@@ -1,8 +1,9 @@
+<!-- TODO: make the page responsive -->
 <div class="main-content">
-  <mat-card>
+  <mat-card class="patients-section">
     <mat-card-content>
       <mat-card-title>Estatísticas do Sistema</mat-card-title>
-      <mat-card-content class="stat-card-list">
+      <mat-card-content class="card-list">
         <mat-card
           class="stat-card"
           *ngFor="let stat of systemStats | keyvalue : keepOrder"
@@ -13,60 +14,48 @@
         </mat-card>
       </mat-card-content>
     </mat-card-content>
+
+    <mat-card-content>
+      <mat-form-field class="search-input" appearance="outline" color="primary">
+        <mat-label>Pesquisar pacientes</mat-label>
+        <input
+          matInput
+          #searchPatientInput
+          class="search-input"
+          type="text"
+          placeholder="Pesquisar pacientes por nome, cpf ou email"
+          aria-label="Pesquisar pacientes"
+          (keyup)="filterPatients(searchPatientInput.value)"
+        />
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-content class="card-list">
+      <mat-card *ngFor="let patient of filteredPatients">
+        <mat-card-header>
+          <mat-card-title-group class="stat-card">
+            <mat-card-title>{{ patient.name }}</mat-card-title>
+            <mat-card-subtitle
+              >{{ patient.birthDate | age }} anos</mat-card-subtitle
+            >
+            <mat-card-subtitle>{{ patient.email }}</mat-card-subtitle>
+            <mat-card-subtitle>{{
+              patient.healthInsurance || "Sem convênio"
+            }}</mat-card-subtitle>
+            <a
+              mat-button
+              routerLink="/pacientes/{{ patient.id }}"
+              color="primary"
+            >
+              Ver mais
+            </a>
+          </mat-card-title-group>
+        </mat-card-header>
+      </mat-card>
+    </mat-card-content>
   </mat-card>
 
-  <section>
-    <h2 class="text-center text-md-start">Informações Rápidas de Pacientes</h2>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1"
-        ><i class="bi bi-search"></i
-      ></span>
-      <input
-        #searchPatientInput
-        id="search-patient"
-        type="text"
-        class="form-control"
-        placeholder="Busca por nome, cpf, telefone ou email"
-        aria-label="Search Patient"
-        aria-describedby="basic-addon1"
-        (keyup)="filterPatients(searchPatientInput.value)"
-      />
-      <button
-        type="button"
-        class="btn btn-outline-secondary"
-        (click)="filterPatients(searchPatientInput.value)"
-      >
-        Buscar
-      </button>
-    </div>
-
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 pb-4">
-      <div class="col" *ngFor="let patient of filteredPatients">
-        <div
-          class="card d-flex flex-column align-items-center gap-2 p-3 shadow"
-        >
-          <i class="bi bi-person-circle" style="font-size: 5rem"></i>
-          <span class="fs-5 fw-bold">{{ patient.name }}</span>
-          <span>{{ patient.birthDate | age }} anos</span>
-          <span>{{ patient.email }}</span>
-          <span
-            class="fw-bold"
-            ngClass="{{
-              patient.healthInsurance ? 'text-primary' : 'text-warning'
-            }}"
-            >{{ patient.healthInsurance || "Sem convênio" }}</span
-          >
-          <a
-            class="btn btn-outline-dark"
-            routerLink="/pacientes/{{ patient.id }}"
-            >Ver mais</a
-          >
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section *ngIf="isAdmin()">
+  <!-- <section *ngIf="isAdmin()">
     <h2 class="text-center text-md-start">Informações Rápidas de Usuários</h2>
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1"
@@ -103,5 +92,5 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </div>
