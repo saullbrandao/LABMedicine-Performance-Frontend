@@ -4,7 +4,7 @@
       <h2>Paciente: {{ medicalRecord.patient.name }}</h2>
       <a
         *ngIf="isAdmin() || isDoctor()"
-        class="btn btn-primary px-5 text-light rounded-0 d-flex justify-content-center align-items-center gap-2"
+        class="btn btn-primary px-5 text-light rounded-2 d-flex justify-content-center align-items-center gap-2"
         style="height: 40px"
         type="button"
         routerLink="/pacientes/{{ medicalRecord.patient.id }}"
@@ -64,7 +64,7 @@
             </h4>
             <a
               *ngIf="isAdmin() || isDoctor()"
-              class="btn btn-primary px-5 text-light rounded-0 d-flex justify-content-center align-items-center gap-2"
+              class="btn btn-primary px-5 text-light rounded-2 d-flex justify-content-center align-items-center gap-2"
               style="height: 40px"
               type="button"
               routerLink="/consultas/{{ appointment.id }}"
@@ -121,7 +121,7 @@
             <h4 class="card-title d-flex gap-4">Nome: {{ exam.name }}</h4>
             <a
               *ngIf="isAdmin() || isDoctor()"
-              class="btn btn-primary px-5 text-light rounded-0 d-flex justify-content-center align-items-center gap-2"
+              class="btn btn-primary px-5 text-light rounded-2 d-flex justify-content-center align-items-center gap-2"
               style="height: 40px"
               type="button"
               routerLink="/exames/{{ exam.id }}"
@@ -179,7 +179,7 @@
           <div class="d-flex justify-content-between">
             <h4 class="card-title d-flex gap-4">Nome: {{ medication.name }}</h4>
             <a
-              class="btn btn-primary px-4 text-light rounded-0 d-flex justify-content-center align-items-center gap-2"
+              class="btn btn-primary px-4 text-light rounded-2 d-flex justify-content-center align-items-center gap-2"
               style="height: 40px"
               type="button"
               routerLink="/medicamentos/{{ medication.id }}"
@@ -234,7 +234,7 @@
           <div class="d-flex justify-content-between">
             <h4 class="card-title d-flex gap-4">Nome: {{ diet.name }}</h4>
             <a
-              class="btn btn-primary px-5 text-light rounded-0 d-flex justify-content-center align-items-center gap-2"
+              class="btn btn-primary px-5 text-light rounded-2 d-flex justify-content-center align-items-center gap-2"
               style="height: 40px"
               type="button"
               routerLink="/dietas/{{ diet.id }}"
@@ -284,7 +284,7 @@
           <div class="d-flex justify-content-between">
             <h4 class="card-title d-flex gap-4">Nome: {{ exercise.name }}</h4>
             <a
-              class="btn btn-primary px-5 text-light rounded-0 d-flex justify-content-center align-items-center gap-2"
+              class="btn btn-primary px-5 text-light rounded-2 d-flex justify-content-center align-items-center gap-2"
               style="height: 40px"
               type="button"
               routerLink="/exercicios/{{ exercise.id }}"

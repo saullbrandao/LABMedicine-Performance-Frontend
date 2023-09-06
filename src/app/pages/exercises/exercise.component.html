@@ -1,7 +1,11 @@
 <section class="p-4">
   <h2>Preencha os campos para cadastrar novo exercício</h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3 d-flex flex-column gap-3">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="p-4 shadow rounded-2 d-flex flex-column gap-3"
+  >
     <div *ngIf="isEditing" class="form-check form-switch form-check-reverse">
       <label class="form-check-label fw-bold" for="status">Exame ativo</label>
       <input
@@ -13,7 +17,7 @@
     </div>
     <button
       *ngIf="!isEditing"
-      class="btn btn-primary px-5 text-light rounded-0 w-100"
+      class="btn btn-primary px-5 text-light rounded-2 w-100"
       data-bs-toggle="modal"
       data-bs-target="#selectPatientModal"
       (click)="$event.preventDefault()"
@@ -132,7 +136,7 @@
     <div class="d-flex gap-2 justify-content-end mt-3">
       <button
         *ngIf="isEditing"
-        class="btn btn-danger px-5 text-light rounded-0"
+        class="btn btn-danger px-5 text-light rounded-2"
         data-bs-toggle="modal"
         data-bs-target="#confirmModal"
         (click)="$event.preventDefault()"
@@ -140,7 +144,7 @@
         Excluir
       </button>
 
-      <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+      <button class="btn btn-primary px-5 text-light rounded-2" type="submit">
         Salvar
       </button>
     </div>

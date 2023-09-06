@@ -38,7 +38,7 @@
       <tbody *ngIf="filteredMedicalRecords.length > 0; else noMedicalRecords">
         <tr
           role="link"
-          class="rounded-3 shadow"
+          class="rounded-2 shadow"
           style="cursor: pointer"
           *ngFor="let medicalRecord of filteredMedicalRecords"
           routerLink="{{ medicalRecord.patient.id }}"

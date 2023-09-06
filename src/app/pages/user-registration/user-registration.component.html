@@ -1,7 +1,7 @@
 <section class="p-4">
   <h2>Preencha os campos para cadastrar novo usuário</h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-2">
     <div>
       <label class="form-label fw-bold" for="name">Nome Completo*</label>
       <input
@@ -39,7 +39,9 @@
         [class.is-invalid]="isInvalid('gender')"
       >
         <option selected disabled>Selecione</option>
-        <option *ngFor="let gender of genderOptions" [value]="gender">{{gender}}</option>
+        <option *ngFor="let gender of genderOptions" [value]="gender">
+          {{ gender }}
+        </option>
       </select>
       <span class="invalid-feedback">Selecione uma opção</span>
 
@@ -91,7 +93,9 @@
           [class.is-invalid]="isInvalid('type')"
         >
           <option selected disabled>Selecione</option>
-          <option *ngFor="let userType of userTypeOptions" [value]="userType">{{userType}}</option>
+          <option *ngFor="let userType of userTypeOptions" [value]="userType">
+            {{ userType }}
+          </option>
         </select>
         <span class="invalid-feedback">Selecione uma opção</span>
       </div>
@@ -99,7 +103,7 @@
 
     <div class="d-flex justify-content-end mt-3">
       <div>
-        <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+        <button class="btn btn-primary px-5 text-light rounded-2" type="submit">
           Salvar
         </button>
       </div>

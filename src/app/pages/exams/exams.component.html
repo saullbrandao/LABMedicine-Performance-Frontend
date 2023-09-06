@@ -1,7 +1,11 @@
 <section class="p-4">
   <h2>{{ header }}</h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3 d-flex flex-column gap-3">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="p-4 shadow rounded-2 d-flex flex-column gap-3"
+  >
     <div *ngIf="editMode" class="form-check form-switch form-check-reverse">
       <label class="form-check-label fw-bold" for="status">Exame ativo</label>
       <input
@@ -9,12 +13,13 @@
         type="checkbox"
         id="status"
         formControlName="status"
-      >
+      />
     </div>
 
     <button
-      class="btn btn-primary px-5 text-light rounded-0 w-100"
-      data-bs-toggle="modal" data-bs-target="#selectPatientModal"
+      class="btn btn-primary px-5 text-light rounded-2 w-100"
+      data-bs-toggle="modal"
+      data-bs-target="#selectPatientModal"
       (click)="$event.preventDefault()"
       [class.d-none]="editMode"
     >
@@ -31,10 +36,8 @@
         id="patient"
         readonly
         [disabled]="disablePatientInput"
-      >
-      <span class="invalid-feedback">
-        Selecione um paciente
-      </span>
+      />
+      <span class="invalid-feedback"> Selecione um paciente </span>
     </div>
 
     <div>
@@ -45,7 +48,7 @@
         type="text"
         id="name"
         formControlName="name"
-      >
+      />
       <span class="invalid-feedback">
         Digite um título válido (Mínimo 8 e máximo 64 caracteres)
       </span>
@@ -59,10 +62,8 @@
         type="date"
         id="date"
         formControlName="date"
-      >
-      <span class="invalid-feedback">
-        Insira uma data válida
-      </span>
+      />
+      <span class="invalid-feedback"> Insira uma data válida </span>
     </div>
 
     <div>
@@ -73,10 +74,8 @@
         type="time"
         id="time"
         formControlName="time"
-      >
-      <span class="invalid-feedback">
-        Insira um horário válido
-      </span>
+      />
+      <span class="invalid-feedback"> Insira um horário válido </span>
     </div>
 
     <div>
@@ -87,7 +86,7 @@
         type="text"
         id="type"
         formControlName="type"
-      >
+      />
       <span class="invalid-feedback">
         Digite um tipo válido (Mínimo 4 e máximo 32 caracteres)
       </span>
@@ -101,7 +100,7 @@
         type="text"
         id="laboratory"
         formControlName="laboratory"
-      >
+      />
       <span class="invalid-feedback">
         Digite um nome válido (Mínimo 4 e máximo 32 caracteres)
       </span>
@@ -109,12 +108,7 @@
 
     <div>
       <label class="form-label fw-bold" for="url">Link do documento</label>
-      <input
-        class="form-control"
-        type="text"
-        id="url"
-        formControlName="url"
-      >
+      <input class="form-control" type="text" id="url" formControlName="url" />
     </div>
 
     <div>
@@ -135,8 +129,9 @@
     <div class="d-flex justify-content-end mt-3 gap-3">
       <div>
         <button
-          class="btn btn-danger px-5 text-light rounded-0"
-          data-bs-toggle="modal" data-bs-target="#confirmModal"
+          class="btn btn-danger px-5 text-light rounded-2"
+          data-bs-toggle="modal"
+          data-bs-target="#confirmModal"
           (click)="$event.preventDefault()"
           [class.d-none]="!editMode"
         >
@@ -144,7 +139,7 @@
         </button>
       </div>
       <div>
-        <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+        <button class="btn btn-primary px-5 text-light rounded-2" type="submit">
           Salvar
         </button>
       </div>

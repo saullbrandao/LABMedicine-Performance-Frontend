@@ -1,20 +1,27 @@
 <section class="p-4">
   <h2>{{ header }}</h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 shadow rounded-3 d-flex flex-column gap-3">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="p-4 shadow rounded-2 d-flex flex-column gap-3"
+  >
     <div *ngIf="editMode" class="form-check form-switch form-check-reverse">
-      <label class="form-check-label fw-bold" for="status">Medicamento ativo</label>
+      <label class="form-check-label fw-bold" for="status"
+        >Medicamento ativo</label
+      >
       <input
         class="form-check-input"
         type="checkbox"
         id="status"
         formControlName="status"
-      >
+      />
     </div>
 
     <button
-      class="btn btn-primary px-5 text-light rounded-0 w-100"
-      data-bs-toggle="modal" data-bs-target="#selectPatientModal"
+      class="btn btn-primary px-5 text-light rounded-2 w-100"
+      data-bs-toggle="modal"
+      data-bs-target="#selectPatientModal"
       (click)="$event.preventDefault()"
       [class.d-none]="editMode"
     >
@@ -31,10 +38,8 @@
         id="patient"
         readonly
         [disabled]="disablePatientInput"
-      >
-      <span class="invalid-feedback">
-        Selecione um paciente
-      </span>
+      />
+      <span class="invalid-feedback"> Selecione um paciente </span>
     </div>
 
     <div>
@@ -45,7 +50,7 @@
         type="text"
         id="name"
         formControlName="name"
-      >
+      />
       <span class="invalid-feedback">
         Digite um nome válido (Mínimo 5 e máximo 100 caracteres)
       </span>
@@ -59,10 +64,8 @@
         type="date"
         id="date"
         formControlName="date"
-      >
-      <span class="invalid-feedback">
-        Insira uma data válida
-      </span>
+      />
+      <span class="invalid-feedback"> Insira uma data válida </span>
     </div>
 
     <div>
@@ -73,10 +76,8 @@
         type="time"
         id="time"
         formControlName="time"
-      >
-      <span class="invalid-feedback">
-        Insira um horário válido
-      </span>
+      />
+      <span class="invalid-feedback"> Insira um horário válido </span>
     </div>
 
     <div>
@@ -89,12 +90,12 @@
         [class.is-invalid]="isInvalid('type')"
       >
         <option selected disabled>Selecione</option>
-        <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+        <option *ngFor="let type of typeOptions" [value]="type">
+          {{ type }}
+        </option>
       </select>
 
-      <span class="invalid-feedback">
-        Selecione um tipo
-      </span>
+      <span class="invalid-feedback"> Selecione um tipo </span>
     </div>
 
     <div class="container mw-100">
@@ -108,10 +109,8 @@
             min="0"
             id="quantity"
             formControlName="quantity"
-          >
-          <span class="invalid-feedback">
-        Insira uma quantidade
-      </span>
+          />
+          <span class="invalid-feedback"> Insira uma quantidade </span>
         </div>
 
         <div class="col-6 pe-0">
@@ -124,17 +123,15 @@
             [class.is-invalid]="isInvalid('unit')"
           >
             <option selected disabled>Selecione</option>
-            <option *ngFor="let unit of unitOptions" [value]="unit">{{ getUnit(unit) }}</option>
+            <option *ngFor="let unit of unitOptions" [value]="unit">
+              {{ getUnit(unit) }}
+            </option>
           </select>
 
-          <span class="invalid-feedback">
-        Selecione uma unidade
-      </span>
+          <span class="invalid-feedback"> Selecione uma unidade </span>
         </div>
       </div>
     </div>
-
-
 
     <div>
       <label class="form-label fw-bold" for="observations">Observações*</label>
@@ -154,8 +151,9 @@
     <div class="d-flex justify-content-end mt-3 gap-3">
       <div>
         <button
-          class="btn btn-danger px-5 text-light rounded-0"
-          data-bs-toggle="modal" data-bs-target="#confirmModal"
+          class="btn btn-danger px-5 text-light rounded-2"
+          data-bs-toggle="modal"
+          data-bs-target="#confirmModal"
           (click)="$event.preventDefault()"
           [class.d-none]="!editMode"
         >
@@ -163,7 +161,7 @@
         </button>
       </div>
       <div>
-        <button class="btn btn-primary px-5 text-light rounded-0" type="submit">
+        <button class="btn btn-primary px-5 text-light rounded-2" type="submit">
           Salvar
         </button>
       </div>
@@ -173,4 +171,3 @@
 
 <app-search-patient-modal (patientSelected)="setPatient($event)" />
 <app-confirm-modal [message]="confirmMessage" (confirmed)="delete()" />
-
