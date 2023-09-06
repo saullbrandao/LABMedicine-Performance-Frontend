@@ -49,6 +49,7 @@
               Motivo: {{ appointment.reason }}
             </h4>
             <a
+              *ngIf="isAdmin() || isDoctor()"
               class="btn btn-primary px-5 text-light rounded-0 d-flex justify-content-center align-items-center gap-2"
               type="button"
               routerLink="/consultas/{{ appointment.id }}"
@@ -104,6 +105,7 @@
           <div class="d-flex justify-content-between">
             <h4 class="card-title d-flex gap-4">Nome: {{ exam.name }}</h4>
             <a
+              *ngIf="isAdmin() || isDoctor()"
               class="btn btn-primary px-5 text-light rounded-0 d-flex justify-content-center align-items-center gap-2"
               type="button"
               routerLink="/exames/{{ exam.id }}"

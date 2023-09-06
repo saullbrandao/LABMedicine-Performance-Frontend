@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { MedicalRecord } from 'src/app/models/medicalRecord';
+import { AuthService } from 'src/app/services/auth.service';
 import { MedicalRecordService } from 'src/app/services/medical-record.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class MedicalRecordComponent implements OnInit, OnDestroy {
 
   constructor(
     private medicalRecordService: MedicalRecordService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.medicalRecord = {
       patient: {
@@ -50,5 +52,13 @@ export class MedicalRecordComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  isDoctor() {
+    return this.authService.isDoctor();
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 }
