@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidebarComponent {
   readonly menuCategories = [
-    { title: 'início', route: '/', icon: 'house-fill' },
+    { title: 'início', route: 'home', icon: 'house-fill' },
     { title: 'prontuários', route: 'prontuarios', icon: 'person-lines-fill' },
     {
       title: 'paciente',

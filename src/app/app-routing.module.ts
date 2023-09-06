@@ -144,10 +144,15 @@ const routes: Routes = [
     ],
   },
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
     title: 'Página Inicial',
     canActivate: [authGuard],
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
   {
     path: 'nao-encontrado',
