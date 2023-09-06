@@ -61,8 +61,8 @@
             >{{ patient.healthInsurance || "Sem convênio" }}</span
           >
           <a
-            class="btn btn-outline-dark"
-            routerLink="/pacientes/{{ patient.id }}"
+            class="btn btn-outline-dark rounded-0 px-4"
+            routerLink="/prontuarios/{{ patient.id }}"
             >Ver mais</a
           >
         </div>
@@ -95,6 +95,7 @@
       </button>
     </div>
 
+    <!-- TODO: link to edit user -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 pb-4">
       <div class="col" *ngFor="let user of filteredUsers">
         <div
